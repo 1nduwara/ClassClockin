@@ -36,10 +36,10 @@
 
     <EditText
         android:id="@+id/txt_username"
-        android:layout_width="271dp"
-        android:layout_height="49dp"
+        android:layout_width="288dp"
+        android:layout_height="50dp"
         android:layout_marginTop="376dp"
-        android:backgroundTint="#000000"
+        android:background="@android:drawable/editbox_background_normal"
         android:ems="10"
         android:hint="@string/txt_hint_username"
         android:inputType="text"
@@ -49,15 +49,16 @@
 
     <EditText
         android:id="@+id/txt_pwd"
-        android:layout_width="275dp"
-        android:layout_height="48dp"
+        android:layout_width="288dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="84dp"
+        android:background="@android:drawable/editbox_background_normal"
         android:ems="10"
         android:hint="@string/txt_hint_pwd"
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintEnd_toEndOf="@+id/btn_login"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/btn_login" />
 
     <TextView
@@ -76,8 +77,8 @@
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="273dp"
-        android:layout_height="54dp"
+        android:layout_width="288dp"
+        android:layout_height="50dp"
         android:layout_marginBottom="256dp"
         android:text="LOGIN"
         android:textSize="20sp"
@@ -95,6 +96,7 @@
         android:textAlignment="center"
         android:textSize="16sp"
         android:textStyle="bold"
+        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.532"
