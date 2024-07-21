@@ -91,7 +91,9 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_margin="20dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="20dp"
                 android:background="#4C1B1B"
                 android:backgroundTint="#B0C1D0"
                 app:cardCornerRadius="5dp"
@@ -100,7 +102,8 @@
                 <ImageView
                     android:id="@+id/crd2_img_calendar"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="90dp"
+                    android:layout_marginTop="0"
                     android:padding="10dp"
                     android:src="@drawable/icon_calendar" />
 
@@ -119,7 +122,9 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_margin="20dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="40dp"
                 android:background="#4C1B1B"
                 android:backgroundTint="#B0C1D0"
                 app:cardCornerRadius="5dp"
@@ -128,7 +133,7 @@
                 <ImageView
                     android:id="@+id/crd3_img_att_summary"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="90dp"
                     android:padding="10dp"
                     android:src="@drawable/icon_att_summary" />
 
@@ -147,7 +152,9 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_margin="20dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="40dp"
                 android:background="#4C1B1B"
                 android:backgroundTint="#B0C1D0"
                 app:cardCornerRadius="5dp"
@@ -156,7 +163,7 @@
                 <ImageView
                     android:id="@+id/crd4_img_student_list"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="90dp"
                     android:padding="10dp"
                     android:src="@drawable/icon_student_list" />
 
