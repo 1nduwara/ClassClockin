@@ -31,6 +31,11 @@ class LoginFragment : Fragment() {
 //            it.findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
 
+//        binding.btnDelete.setOnClickListener {
+//            clearAllUserData()
+//        }
+
+
         return binding.root
     }
 
@@ -53,9 +58,23 @@ class LoginFragment : Fragment() {
             // Navigate to HomeFragment
             view?.findNavController()?.navigate(R.id.action_loginFragment_to_homeFragment)
         } else {
-            // Display a message to the user
+            // To display a message to the user
             Toast.makeText(context, "Invalid username or password!", Toast.LENGTH_SHORT).show()
         }
     }
+
+//    private fun clearAllUserData() {
+//        val sharedPref = activity?.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+//        val editor = sharedPref?.edit()
+//
+//        // Clear all data
+//        editor?.clear()
+//
+//        // Commit the changes
+//        editor?.apply()
+//
+//        Toast.makeText(context, "All user data cleared", Toast.LENGTH_SHORT).show()
+//    }
+
 
 }
