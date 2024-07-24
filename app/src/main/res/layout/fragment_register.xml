@@ -22,8 +22,8 @@
 
         <ImageView
             android:id="@+id/btn_back"
-            android:layout_width="57dp"
-            android:layout_height="52dp"
+            android:layout_width="52dp"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
             android:clickable="true"
             android:src="@drawable/icon_back"
@@ -37,6 +37,7 @@
             android:layout_width="260dp"
             android:layout_height="40dp"
             android:text="Registration Form"
+            android:layout_marginStart="10dp"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="28dp"
@@ -86,8 +87,7 @@
         android:layout_marginBottom="32dp"
         android:background="@android:drawable/editbox_background_normal"
         android:ems="10"
-        android:hint="Teacher Id
-"
+        android:hint="Teacher ID"
         android:inputType="text"
         android:textAlignment="textStart"
         app:layout_constraintBottom_toTopOf="@+id/etPhoneNumber"
@@ -179,10 +179,11 @@
     <Button
         android:id="@+id/btnReg"
         android:layout_width="288dp"
-        android:layout_height="52dp"
+        android:layout_height="58dp"
         android:layout_marginBottom="52dp"
         android:clickable="true"
-        android:text="Register"
+        android:text="REGISTER"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
