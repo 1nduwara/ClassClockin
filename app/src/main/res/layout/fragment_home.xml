@@ -174,15 +174,44 @@
         </LinearLayout>
     </ScrollView>
 
-    <com.google.android.material.bottomappbar.BottomAppBar
+    <LinearLayout
         android:id="@+id/bottomAppBar"
         android:layout_width="414dp"
         android:layout_height="80dp"
-        android:layout_gravity="bottom"
-        app:backgroundTint="#111945"
+        android:background="#111945"
+        android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="BottomAppBar" />
+        tools:ignore="BottomAppBar,MissingPrefix" >
+
+        <ImageView
+            android:id="@+id/nav_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/icon_nav_account" />
+
+        <ImageView
+            android:id="@+id/nav_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/icon_nav_home" />
+
+        <ImageView
+            android:id="@+id/nav_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/icon_nav_notification" />
+
+        <ImageView
+            android:id="@+id/nav_reports"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/icon_nav_reports" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
