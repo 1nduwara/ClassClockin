@@ -52,13 +52,14 @@ class LoginFragment : Fragment() {
         val sharedPref = activity?.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
         val storedFirstName = sharedPref?.getString("first_name", "")
         val storedTeacherId = sharedPref?.getString("teacher_id", "")
+        val storedEmail = sharedPref?.getString("email_address", "")
         val storedPassword = sharedPref?.getString("password", "")
 
-        if ((username == storedFirstName || username == storedTeacherId) && password == storedPassword) {
+        if ((username == storedFirstName || username == storedTeacherId || username == storedEmail) && password == storedPassword) {
             // Navigate to HomeFragment
             view?.findNavController()?.navigate(R.id.action_loginFragment_to_homeFragment)
         } else {
-            // To display a message to the user
+            // Display a message to the user
             Toast.makeText(context, "Invalid username or password!", Toast.LENGTH_SHORT).show()
         }
     }

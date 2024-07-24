@@ -10,11 +10,14 @@ import android.widget.Toast
 import androidx.navigation.findNavController
 import com.example.classclockin.R
 import com.example.classclockin.databinding.FragmentRegisterBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.userProfileChangeRequest
 
 
 class RegisterFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,6 +25,9 @@ class RegisterFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
 //        return inflater.inflate(R.layout.fragment_register, container, false)
+
+        // Initializing Firebase Auth
+        auth = FirebaseAuth.getInstance()
 
         binding = FragmentRegisterBinding.inflate(inflater, container, false)
 
@@ -57,19 +63,42 @@ class RegisterFragment : Fragment() {
             return
         }
 
-        val sharedPref = activity?.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
-        val editor = sharedPref?.edit()
-        editor?.putString("first_name", firstName)
-        editor?.putString("last_name", lastName)
-        editor?.putString("teacher_id", teacherId)
-        editor?.putString("phone_number", phoneNumber)
-        editor?.putString("email_address", emailAddress)
-        editor?.putString("password", password)
-        editor?.apply()
+//        val sharedPref = activity?.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
+//        val editor = sharedPref?.edit()
+//        editor?.putString("first_name", firstName)
+//        editor?.putString("last_name", lastName)
+//        editor?.putString("teacher_id", teacherId)
+//        editor?.putString("phone_number", phoneNumber)
+//        editor?.putString("email_address", emailAddress)
+//        editor?.putString("password", password)
+//        editor?.apply()
+//
+//        Toast.makeText(context, "Registration successful", Toast.LENGTH_SHORT).show()
+//        view?.findNavController()?.navigate(R.id.action_registerFragment_to_loginFragment)
 
-        Toast.makeText(context, "Registration successful", Toast.LENGTH_SHORT).show()
-        view?.findNavController()?.navigate(R.id.action_registerFragment_to_loginFragment)
+        auth.createUserWithEmailAndPassword(emailAddress, password)
+            .addOnCompleteListener(requireActivity()) { task ->
+                if (task.isSuccessful) {
+                    // Registration successful, save additional user info
+                    val user = auth.currentUser
+                    user?.let {
+                        val profileUpdates = userProfileChangeRequest {
+                            displayName = firstName // Optionally save additional profile information
+                        }
+
+                        user.updateProfile(profileUpdates).addOnCompleteListener { profileTask ->
+                            if (profileTask.isSuccessful) {
+                                Toast.makeText(context, "Registration successful", Toast.LENGTH_SHORT).show()
+                                view?.findNavController()?.navigate(R.id.action_registerFragment_to_loginFragment)
+                            }
+                        }
+                    }
+                } else {
+                    Toast.makeText(context, "Registration failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
-}
+    }
+
 
 
