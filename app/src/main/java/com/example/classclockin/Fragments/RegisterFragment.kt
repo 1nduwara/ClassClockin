@@ -23,8 +23,6 @@ class RegisterFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_register, container, false)
 
         // Initializing Firebase Auth
         auth = FirebaseAuth.getInstance()
@@ -63,37 +61,25 @@ class RegisterFragment : Fragment() {
             return
         }
 
-//        val sharedPref = activity?.getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
-//        val editor = sharedPref?.edit()
-//        editor?.putString("first_name", firstName)
-//        editor?.putString("last_name", lastName)
-//        editor?.putString("teacher_id", teacherId)
-//        editor?.putString("phone_number", phoneNumber)
-//        editor?.putString("email_address", emailAddress)
-//        editor?.putString("password", password)
-//        editor?.apply()
-//
-//        Toast.makeText(context, "Registration successful", Toast.LENGTH_SHORT).show()
-//        view?.findNavController()?.navigate(R.id.action_registerFragment_to_loginFragment)
-
         auth.createUserWithEmailAndPassword(emailAddress, password)
             .addOnCompleteListener(requireActivity()) { task ->
                 if (task.isSuccessful) {
-                    // Registration successful, save additional user info
                     val user = auth.currentUser
                     user?.let {
                         val profileUpdates = userProfileChangeRequest {
-                            displayName = firstName // Optionally save additional profile information
+                            displayName = firstName // saving additional profile information
                         }
 
                         user.updateProfile(profileUpdates).addOnCompleteListener { profileTask ->
                             if (profileTask.isSuccessful) {
                                 Toast.makeText(context, "Registration successful", Toast.LENGTH_SHORT).show()
                                 view?.findNavController()?.navigate(R.id.action_registerFragment_to_loginFragment)
+                                //Successful registration, user gets redirected to the login page
                             }
                         }
                     }
                 } else {
+                    // Show error message as a toast if the registration failed
                     Toast.makeText(context, "Registration failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
