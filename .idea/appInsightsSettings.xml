@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.example.classclockin" />
+                  <option name="mobileSdkAppId" value="1:175187349780:android:4832011f23da30ec2b7201" />
+                  <option name="projectId" value="class-clock-in" />
+                  <option name="projectNumber" value="175187349780" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "175187349780",
+    "project_id": "class-clock-in",
+    "storage_bucket": "class-clock-in.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175187349780:android:4832011f23da30ec2b7201",
+        "android_client_info": {
+          "package_name": "com.example.classclockin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYaVHM1vWoYQVvHXBCiB_76OfKFuGWZ0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

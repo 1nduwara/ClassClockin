@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.RegisterFragment">
+    tools:context=".fragments.RegisterFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -46,8 +46,9 @@
             tools:layout_editor_absoluteY="19dp" />
     </com.google.android.material.bottomappbar.BottomAppBar>
 
+<!--    Confirm Password -->
     <EditText
-        android:id="@+id/editTextTextPassword2"
+        android:id="@+id/etConfirmPassword"
         android:layout_width="288dp"
         android:layout_height="50dp"
         android:layout_marginBottom="32dp"
@@ -55,13 +56,14 @@
         android:ems="10"
         android:hint="Confirm Password"
         android:inputType="textPassword"
-        android:textAlignment="center"
+        android:textAlignment="textStart"
         app:layout_constraintBottom_toTopOf="@+id/chkbx_terms"
         app:layout_constraintEnd_toEndOf="@+id/chkbx_terms"
         app:layout_constraintStart_toStartOf="@+id/chkbx_terms" />
 
+<!--    Email Address -->
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/etEmailAddress"
         android:layout_width="288dp"
         android:layout_height="50dp"
         android:layout_marginBottom="32dp"
@@ -70,14 +72,15 @@
         android:ems="10"
         android:hint="E-mail Address"
         android:inputType="textEmailAddress"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toTopOf="@+id/etPassword"
+        app:layout_constraintEnd_toEndOf="@+id/etPassword"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword" />
+        app:layout_constraintStart_toStartOf="@+id/etPassword" />
 
+<!--    Teacher ID -->
     <EditText
-        android:id="@+id/editTextText3"
+        android:id="@+id/etTeacherId"
         android:layout_width="288dp"
         android:layout_height="50dp"
 
@@ -86,14 +89,15 @@
         android:ems="10"
         android:hint="Teacher ID"
         android:inputType="text"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPhone"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toTopOf="@+id/etPhoneNumber"
+        app:layout_constraintEnd_toEndOf="@+id/etPhoneNumber"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextPhone" />
+        app:layout_constraintStart_toStartOf="@+id/etPhoneNumber" />
 
+<!--    Password -->
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/etPassword"
         android:layout_width="288dp"
         android:layout_height="50dp"
         android:layout_marginBottom="32dp"
@@ -102,14 +106,15 @@
         android:hint="Password"
 
         android:inputType="textPassword"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword2"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword2"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toTopOf="@+id/etConfirmPassword"
+        app:layout_constraintEnd_toEndOf="@+id/etConfirmPassword"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword2" />
+        app:layout_constraintStart_toStartOf="@+id/etConfirmPassword" />
 
+<!--    Phone Number -->
     <EditText
-        android:id="@+id/editTextPhone"
+        android:id="@+id/etPhoneNumber"
         android:layout_width="288dp"
         android:layout_height="50dp"
 
@@ -118,14 +123,15 @@
         android:ems="10"
         android:hint="Phone Number"
         android:inputType="phone"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextEmailAddress"
-        app:layout_constraintEnd_toEndOf="@+id/editTextTextEmailAddress"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toTopOf="@+id/etEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/etEmailAddress"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintStart_toStartOf="@+id/etEmailAddress" />
 
+<!--    Last Name-->
     <EditText
-        android:id="@+id/editTextText2"
+        android:id="@+id/etLastName"
         android:layout_width="288dp"
         android:layout_height="50dp"
         android:layout_marginBottom="32dp"
@@ -133,14 +139,15 @@
         android:ems="10"
         android:hint="Last Name"
         android:inputType="text"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText3"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText3"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toTopOf="@+id/etTeacherId"
+        app:layout_constraintEnd_toEndOf="@+id/etTeacherId"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextText3" />
+        app:layout_constraintStart_toStartOf="@+id/etTeacherId" />
 
+<!--    First Name -->
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/etFirstName"
         android:layout_width="288dp"
         android:layout_height="50dp"
         android:layout_marginTop="64dp"
@@ -149,26 +156,28 @@
         android:ems="10"
         android:hint="First Name"
         android:inputType="text"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/editTextText2"
-        app:layout_constraintEnd_toEndOf="@+id/editTextText2"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toTopOf="@+id/etLastName"
+        app:layout_constraintEnd_toEndOf="@+id/etLastName"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/editTextText2"
+        app:layout_constraintStart_toStartOf="@+id/etLastName"
         app:layout_constraintTop_toBottomOf="@+id/topAppBar"
         app:layout_constraintVertical_bias="0.909" />
 
+<!--    Agree to terms and conditions -->
     <CheckBox
         android:id="@+id/chkbx_terms"
         android:layout_width="288dp"
         android:layout_height="51dp"
         android:layout_marginBottom="32dp"
         android:text="@string/chkbx_terms"
-        app:layout_constraintBottom_toTopOf="@+id/btn_reg"
-        app:layout_constraintEnd_toEndOf="@+id/btn_reg"
-        app:layout_constraintStart_toStartOf="@+id/btn_reg" />
+        app:layout_constraintBottom_toTopOf="@+id/btnReg"
+        app:layout_constraintEnd_toEndOf="@+id/btnReg"
+        app:layout_constraintStart_toStartOf="@+id/btnReg" />
 
+<!--    Register Button -->
     <Button
-        android:id="@+id/btn_reg"
+        android:id="@+id/btnReg"
         android:layout_width="288dp"
         android:layout_height="58dp"
         android:layout_marginBottom="52dp"
