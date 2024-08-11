@@ -7,4 +7,5 @@
     <string name="txt_welcome">Welcome to ClassClockIn</string>
     <string name="txt_forget_pwd">Forgot Password?</string>
     <string name="chkbx_terms"><![CDATA[I agree to the Terms & Conditions]]></string>
+    <string name="topbar_title_markAttendance">Mark Attendance</string>
 </resources>

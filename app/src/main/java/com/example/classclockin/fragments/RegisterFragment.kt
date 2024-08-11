@@ -1,6 +1,5 @@
-package com.example.classclockin.Fragments
+package com.example.classclockin.fragments
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater

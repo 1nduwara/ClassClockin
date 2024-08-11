@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.HomeFragment">
+    tools:context=".fragments.HomeFragment">
 
 
 
@@ -36,11 +36,7 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-
-<!--    SCROLL LIST-->
-
-    <!--    BOTTOM BAR-->
-
+    <!--    SCROLL LIST-->
     <ScrollView
         android:layout_width="413dp"
         android:layout_height="745dp"
@@ -89,6 +85,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/crd2_mark_attendance"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_margin="20dp"
@@ -174,6 +171,7 @@
         </LinearLayout>
     </ScrollView>
 
+    <!--    BOTTOM BAR-->
     <LinearLayout
         android:id="@+id/bottomAppBar"
         android:layout_width="414dp"
