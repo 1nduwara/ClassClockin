@@ -39,5 +39,9 @@
         android:id="@+id/markAttendanceFragment"
         android:name="com.example.classclockin.fragments.MarkAttendanceFragment"
         android:label="fragment_mark_attendance"
-        tools:layout="@layout/fragment_mark_attendance" />
+        tools:layout="@layout/fragment_mark_attendance" >
+        <action
+            android:id="@+id/action_markAttendanceFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

@@ -1,36 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frameLayout4"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.MarkAttendanceFragment">
+    tools:context=".fragments.homeCards.MarkAttendanceFragment">
 
-    <LinearLayout
-        android:id="@+id/materialToolbar"
-        android:layout_width="414dp"
-        android:layout_height="63dp"
-        android:background="?attr/colorPrimary"
-        android:gravity="top"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
+    <com.google.android.material.bottomappbar.BottomAppBar
+        android:id="@+id/topAppBar"
+        android:layout_width="423dp"
+        android:layout_height="78dp"
+        android:layout_gravity="top"
+        app:backgroundTint="#111945"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UselessParent">
+        tools:ignore="BottomAppBar">
+
+        <ImageView
+            android:id="@+id/btn_back"
+            android:layout_width="52dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:clickable="true"
+            android:src="@drawable/icon_back"
+            app:layout_constraintBottom_toBottomOf="@+id/topAppBar"
+            app:layout_constraintStart_toStartOf="@+id/topAppBar"
+            app:layout_constraintTop_toTopOf="@+id/textView3"
+            app:layout_constraintVertical_bias="0.615" />
 
         <TextView
-            android:id="@+id/txt_home_topbar_classclockin"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#111945"
-            android:paddingTop="7dp"
-            android:text="@string/topbar_title_markAttendance"
+            android:id="@+id/txt_reg_form"
+            android:layout_width="260dp"
+            android:layout_height="40dp"
+            android:text="Mark Attendance"
+            android:layout_marginStart="10dp"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="35sp"
-            android:textStyle="bold" />
+            android:textSize="28dp"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="81dp"
+            tools:layout_editor_absoluteY="19dp" />
+    </com.google.android.material.bottomappbar.BottomAppBar>
+
+    <LinearLayout
+        android:id="@+id/bottomAppBar"
+        android:layout_width="414dp"
+        android:layout_height="80dp"
+        android:background="#111945"
+        android:padding="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="BottomAppBar,MissingPrefix" >
+
+        <ImageView
+            android:id="@+id/nav_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/icon_nav_account" />
+
+        <ImageView
+            android:id="@+id/nav_home"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/icon_nav_home" />
+
+        <ImageView
+            android:id="@+id/nav_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/icon_nav_notification" />
+
+        <ImageView
+            android:id="@+id/nav_reports"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/icon_nav_reports" />
     </LinearLayout>
 
-</FrameLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="414dp"
+        android:layout_height="94dp"
+        android:background="#2196F3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/topAppBar">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="76dp"
+            android:layout_height="57dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/icon_calendar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.405" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayout"
+            android:layout_width="150dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="92dp"
+            android:hint="Select Date"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.513">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dateInput"
+                android:layout_width="match_parent"
+                android:layout_height="53dp"
+                android:layout_gravity="center"
+                android:focusable="false"
+                android:inputType="none" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="4dp"
+            android:layout_height="match_parent"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="256dp"
+            android:backgroundTint="@color/black"/>
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="112dp"
+            android:layout_height="59dp"
+            android:spinnerMode="dropdown"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="285dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
