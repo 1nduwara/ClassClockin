@@ -66,7 +66,7 @@ class MarkAttendanceFragment : Fragment() {
         val spinner: Spinner = view.findViewById(R.id.spinner)
 
         // Create a list of items for the Spinner
-        val items = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
+        val items = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5") //<================================ Add Items
 
         // Create an ArrayAdapter using the string list and a default spinner layout
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, items)
