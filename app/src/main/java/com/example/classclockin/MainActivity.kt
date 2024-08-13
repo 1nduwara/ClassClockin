@@ -43,6 +43,12 @@ class MainActivity : AppCompatActivity() {
                 .replace(R.id.navHostFragmentContainerView, MarkAttendanceFragment())
                 .commitNow()
         }
+
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.navHostFragmentContainerView, MarkAttendanceFragment())
+                .commitNow()
+        }
     }
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
