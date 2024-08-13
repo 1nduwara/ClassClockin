@@ -6,6 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
 import com.example.classclockin.R
 import com.example.classclockin.databinding.FragmentHomeBinding
 import com.google.android.material.textfield.TextInputEditText
@@ -14,6 +18,7 @@ import java.util.*
 class MarkAttendanceFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,9 +32,10 @@ class MarkAttendanceFragment : Fragment() {
         return binding.root
     }
 
+    //date picker
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+//________________________________________________________________________________________________________________________________
         // Initialize the TextInputEditText
         val dateInput = view.findViewById<TextInputEditText>(R.id.dateInput)
 
@@ -54,7 +60,42 @@ class MarkAttendanceFragment : Fragment() {
 
             datePickerDialog.show()
         }
+
+//________________________________________________________________________________________________________________________________
+        // Initialize the Spinner
+        val spinner: Spinner = view.findViewById(R.id.spinner)
+
+        // Create a list of items for the Spinner
+        val items = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5")
+
+        // Create an ArrayAdapter using the string list and a default spinner layout
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, items)
+
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+
+        // Apply the adapter to the spinner
+        spinner.adapter = adapter
+
+        // Set an item selected listener for the spinner
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                // Get the selected item
+                val selectedItem = parent.getItemAtPosition(position).toString()
+
+                // Show the selected item in a Toast message
+                Toast.makeText(requireContext(), "Selected: $selectedItem", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Do nothing when nothing is selected
+            }
+        }
     }
+
+
+
+
 
 
 
