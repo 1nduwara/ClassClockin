@@ -85,6 +85,7 @@
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
         android:layout_width="414dp"
         android:layout_height="94dp"
         android:background="#2196F3"
@@ -128,10 +129,10 @@
             android:layout_width="4dp"
             android:layout_height="match_parent"
             android:background="?android:attr/listDivider"
+            android:backgroundTint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="256dp"
-            android:backgroundTint="@color/black"/>
+            tools:layout_editor_absoluteX="256dp" />
 
         <Spinner
             android:id="@+id/spinner"
@@ -143,5 +144,21 @@
             tools:layout_editor_absoluteX="285dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="409dp"
+        android:layout_height="637dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomAppBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.117">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
