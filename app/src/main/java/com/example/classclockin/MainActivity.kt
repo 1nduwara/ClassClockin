@@ -10,6 +10,8 @@ import androidx.fragment.app.FragmentFactory
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.transition.TransitionInflater
+import com.example.classclockin.fragments.LoginFragment
+import com.example.classclockin.fragments.homeCards.MarkAttendanceFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,6 +35,13 @@ class MainActivity : AppCompatActivity() {
                 fragment.exitTransition = fadeTransition
                 return fragment
             }
+        }
+
+        // Add the fragment to the activity
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.navHostFragmentContainerView, MarkAttendanceFragment())
+                .commitNow()
         }
     }
     override fun onSupportNavigateUp(): Boolean {
