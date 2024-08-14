@@ -45,10 +45,21 @@
             tools:layout_editor_absoluteY="19dp" />
     </com.google.android.material.bottomappbar.BottomAppBar>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_student"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/icon_add"
+        app:layout_constraintBottom_toTopOf="@id/bottomAppBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="VectorDrawableCompat,SpeakableTextPresentCheck" />
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="409dp"
-        android:layout_height="653dp"
+        android:layout_height="650dp"
         android:layout_marginTop="32dp"
         app:layout_constraintBottom_toTopOf="@+id/bottomAppBar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +70,7 @@
         tools:ignore="SpeakableTextPresentCheck">
 
         <LinearLayout
+            android:id="@+id/studentListLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
@@ -106,17 +118,17 @@
 
     <SearchView
         android:id="@+id/searchView"
-        android:layout_width="243dp"
+        android:layout_width="240dp"
         android:layout_height="53dp"
         android:background="@color/g_gray500"
         android:elevation="5dp"
-        android:searchHintIcon="@color/black"
+        android:queryHint="Search Student"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topAppBar"
-        app:layout_constraintVertical_bias="0.481" />
+        app:layout_constraintVertical_bias="0.2" />
 
     <Button
         android:id="@+id/button"
@@ -128,6 +140,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/searchView"
         app:layout_constraintTop_toBottomOf="@+id/topAppBar"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,12 +12,13 @@ import android.widget.Spinner
 import android.widget.Toast
 import com.example.classclockin.R
 import com.example.classclockin.databinding.FragmentHomeBinding
+import com.example.classclockin.databinding.FragmentMarkAttendanceBinding
 import com.google.android.material.textfield.TextInputEditText
 import java.util.*
 
 class MarkAttendanceFragment : Fragment() {
 
-    private lateinit var binding: FragmentHomeBinding
+    private lateinit var binding: FragmentMarkAttendanceBinding
 
 
     override fun onCreateView(
@@ -25,9 +26,7 @@ class MarkAttendanceFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
-
-        binding
+        binding = FragmentMarkAttendanceBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -61,7 +60,7 @@ class MarkAttendanceFragment : Fragment() {
             datePickerDialog.show()
         }
 
-//________________________________________________________________________________________________________________________________
+
         // Initialize the Spinner
         val spinner: Spinner = view.findViewById(R.id.spinner)
 

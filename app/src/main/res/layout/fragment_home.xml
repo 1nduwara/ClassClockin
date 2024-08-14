@@ -89,16 +89,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="50dp"
                 android:background="#4C1B1B"
                 android:backgroundTint="#B0C1D0"
+                android:clickable="true"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="10dp"
-                android:clickable="true">
+                tools:ignore="DuplicateClickableBoundsCheck">
 
                 <ImageView
                     android:id="@+id/crd2_img_calendar"
+                    android:contentDescription="calendar"
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
                     android:clickable="true"
@@ -109,12 +111,12 @@
                     android:id="@+id/crd2_txt_markAttendance"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:clickable="true"
                     android:paddingTop="100dp"
                     android:text="Mark Attendance"
                     android:textAlignment="center"
                     android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:clickable="true"/>
+                    android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
 
@@ -122,32 +124,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
                 android:layout_marginTop="40dp"
+                android:layout_marginRight="50dp"
                 android:background="#4C1B1B"
                 android:backgroundTint="#B0C1D0"
+                android:clickable="true"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="10dp"
-                android:clickable="true">
+                tools:ignore="DuplicateClickableBoundsCheck">
 
                 <ImageView
                     android:id="@+id/crd3_img_att_summary"
+                    android:contentDescription="attendance_summary"
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
+                    android:clickable="true"
                     android:padding="10dp"
-                    android:src="@drawable/icon_att_summary"
-                    android:clickable=""/>
+                    android:src="@drawable/icon_att_summary" />
 
                 <TextView
                     android:id="@+id/crd3_txt_attendanceSummary"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:clickable="true"
                     android:paddingTop="100dp"
                     android:text="Attendance Summary"
                     android:textAlignment="center"
                     android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:clickable=""/>
+                    android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
 
@@ -155,32 +159,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
                 android:layout_marginTop="40dp"
+                android:layout_marginRight="50dp"
                 android:background="#4C1B1B"
                 android:backgroundTint="#B0C1D0"
+                android:clickable="true"
                 app:cardCornerRadius="5dp"
                 app:cardElevation="10dp"
-                android:clickable="">
+                tools:ignore="DuplicateClickableBoundsCheck">
 
                 <ImageView
                     android:id="@+id/crd4_img_student_list"
+                    android:contentDescription="student_list"
                     android:layout_width="match_parent"
                     android:layout_height="90dp"
+                    android:clickable="true"
                     android:padding="10dp"
-                    android:src="@drawable/icon_student_list"
-                    android:clickable="true"/>
+                    android:src="@drawable/icon_student_list" />
 
                 <TextView
                     android:id="@+id/crd4_txt_view_stu_list"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:clickable="true"
                     android:paddingTop="100dp"
                     android:text="View Student List"
                     android:textAlignment="center"
                     android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:clickable="true"/>
+                    android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
         </LinearLayout>
