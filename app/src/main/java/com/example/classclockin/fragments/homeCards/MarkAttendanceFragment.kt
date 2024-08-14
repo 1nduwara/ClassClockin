@@ -8,51 +8,56 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
 import com.example.classclockin.R
+import com.example.classclockin.Student
 import com.example.classclockin.databinding.FragmentHomeBinding
 import com.example.classclockin.databinding.FragmentMarkAttendanceBinding
 import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import java.util.*
 
 class MarkAttendanceFragment : Fragment() {
 
     private lateinit var binding: FragmentMarkAttendanceBinding
-
+    private lateinit var database: DatabaseReference
+    private var studentList: MutableList<Student> = mutableListOf()
+    private var selectedDate: String = getCurrentDate()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         binding = FragmentMarkAttendanceBinding.inflate(inflater, container, false)
+        database = FirebaseDatabase.getInstance().reference
+
+        loadStudents()
+        setupDateInput()
 
         return binding.root
     }
 
-    //date picker
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-//________________________________________________________________________________________________________________________________
-        // Initialize the TextInputEditText
-        val dateInput = view.findViewById<TextInputEditText>(R.id.dateInput)
-
-        // Set an onClickListener to show the DatePickerDialog
-        dateInput.setOnClickListener {
-            // Get current date
+    private fun setupDateInput() {
+        binding.dateInput.setOnClickListener {
             val calendar = Calendar.getInstance()
             val year = calendar.get(Calendar.YEAR)
             val month = calendar.get(Calendar.MONTH)
             val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-            // Create a DatePickerDialog and show it
             val datePickerDialog = DatePickerDialog(
                 requireContext(),
                 { _, selectedYear, selectedMonth, selectedDay ->
-                    // Format the date and set it to the EditText
-                    val formattedDate = "$selectedDay/${selectedMonth + 1}/$selectedYear"
-                    dateInput.setText(formattedDate)
+                    // Set the selected date in the TextInputEditText
+                    selectedDate = "$selectedYear-${(selectedMonth + 1).toString().padStart(2, '0')}-${selectedDay.toString().padStart(2, '0')}"
+                    binding.dateInput.setText(selectedDate)
                 },
                 year, month, day
             )
@@ -60,43 +65,108 @@ class MarkAttendanceFragment : Fragment() {
             datePickerDialog.show()
         }
 
+        // Set current date as default
+        binding.dateInput.setText(selectedDate)
+    }
 
-        // Initialize the Spinner
-        val spinner: Spinner = view.findViewById(R.id.spinner)
-
-        // Create a list of items for the Spinner
-        val items = listOf("Item 1", "Item 2", "Item 3", "Item 4", "Item 5") //<================================ Add Items
-
-        // Create an ArrayAdapter using the string list and a default spinner layout
-        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, items)
-
-        // Specify the layout to use when the list of choices appears
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
-        // Apply the adapter to the spinner
-        spinner.adapter = adapter
-
-        // Set an item selected listener for the spinner
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                // Get the selected item
-                val selectedItem = parent.getItemAtPosition(position).toString()
-
-                // Show the selected item in a Toast message
-                Toast.makeText(requireContext(), "Selected: $selectedItem", Toast.LENGTH_SHORT).show()
+    private fun loadStudents() {
+        database.child("students").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                studentList.clear()
+                for (studentSnapshot in snapshot.children) {
+                    val student = studentSnapshot.getValue(Student::class.java)
+                    student?.let { studentList.add(it) }
+                }
+                displayStudents()
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {
-                // Do nothing when nothing is selected
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(requireContext(), "Failed to load students", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun displayStudents() {
+        binding.studentListLayout.removeAllViews()
+
+        for (student in studentList) {
+            val studentView = createStudentView(student)
+            binding.studentListLayout.addView(studentView)
+        }
+
+        setupAllPresentButton()
+    }
+
+    private fun setupAllPresentButton() {
+        binding.btnAllPresent.setOnClickListener {
+            for (student in studentList) {
+                student.studentAttendance = 100.0f // Mark all as present
+                updateAttendance(student)
             }
         }
     }
 
+    private fun createStudentView(student: Student): View {
+        val studentView = LayoutInflater.from(context).inflate(R.layout.student_item_with_attendance, null)
+        val nameTextView = studentView.findViewById<TextView>(R.id.txt_student_name)
+        val attendanceSpinner = studentView.findViewById<Spinner>(R.id.spinner_attendance)
 
+        val attendanceOptions = resources.getStringArray(R.array.attendance_options)
+        val adapter = ArrayAdapter(
+            requireContext(),
+            android.R.layout.simple_spinner_item,
+            attendanceOptions
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        attendanceSpinner.adapter = adapter
 
+        when (student.studentAttendance) {
+            100.0f -> attendanceSpinner.setSelection(0) // Present
+            0.0f -> attendanceSpinner.setSelection(1)   // Absent
+            else -> attendanceSpinner.setSelection(2)   // Late
+        }
 
+        attendanceSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                val newAttendance = when (position) {
+                    0 -> 100.0f // Present
+                    1 -> 0.0f   // Absent
+                    else -> 50.0f // Late
+                }
 
+                if (student.studentAttendance != newAttendance) {
+                    student.studentAttendance = newAttendance
+                    updateAttendance(student)
+                }
+            }
 
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Do nothing
+            }
+        }
 
+        nameTextView.text = student.studentName
 
+        return studentView
+    }
+
+    private fun updateAttendance(student: Student) {
+        val attendanceRef = database.child("students").child(student.studentId!!).child("attendanceRecords").child(selectedDate)
+
+        attendanceRef.setValue(student.studentAttendance)
+            .addOnSuccessListener {
+                Toast.makeText(requireContext(), "Attendance updated for ${student.studentName} on $selectedDate", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Failed to update attendance", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun getCurrentDate(): String {
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH) + 1
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        return "$year-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}"
+    }
 }
