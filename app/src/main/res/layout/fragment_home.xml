@@ -121,6 +121,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/crd2_attendance_summary"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginLeft="50dp"
@@ -156,6 +157,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/crd2_view_student_list"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginLeft="50dp"

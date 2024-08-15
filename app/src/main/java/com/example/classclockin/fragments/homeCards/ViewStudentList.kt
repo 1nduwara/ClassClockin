@@ -21,6 +21,7 @@ import com.example.classclockin.Student
 import com.example.classclockin.databinding.FragmentViewStudentListBinding
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
+import java.util.Locale
 
 class ViewStudentList : Fragment() {
 
@@ -138,15 +139,22 @@ class ViewStudentList : Fragment() {
 
 
     private fun loadStudents() {
-        database.child("students").orderByChild("name").addValueEventListener(object : ValueEventListener {
+        database.child("students").orderByChild("studentName").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 binding.studentListLayout.removeAllViews()
                 var currentLetter = ""
+
+                val studentsList = mutableListOf<Student>()
+
                 for (studentSnapshot in snapshot.children) {
                     val student = studentSnapshot.getValue(Student::class.java)
+                    student?.let { studentsList.add(it) }
+                }
 
-                    // Group by the first letter of the name
-                    val firstLetter = student?.studentName?.firstOrNull()?.toUpperCase().toString()
+                studentsList.sortBy { it.studentName?.toUpperCase(Locale.getDefault()) }
+
+                for (student in studentsList) {
+                    val firstLetter = student.studentName?.firstOrNull()?.toUpperCase().toString()
                     if (firstLetter != currentLetter) {
                         currentLetter = firstLetter
                         val letterView = LayoutInflater.from(context).inflate(R.layout.letter_separator, null)

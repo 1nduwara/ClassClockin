@@ -29,6 +29,20 @@ class HomeFragment : Fragment() {
         binding.crd2MarkAttendance.setOnClickListener{
             it.findNavController().navigate(R.id.action_homeFragment_to_markAttendanceFragment)
         }
+        
+        binding.crd2ViewStudentList.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_viewStudentList)
+        }
+
+        binding.crd4ImgStudentList.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_viewStudentList)
+        }
+
+        binding.crd4TxtViewStuList.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_viewStudentList)
+        }
+
+
 
         return binding.root
     }

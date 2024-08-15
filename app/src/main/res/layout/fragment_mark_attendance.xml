@@ -94,6 +94,19 @@
             android:orientation="vertical" />
     </ScrollView>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_save_attendance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@drawable/icon_save"
+        android:contentDescription="save_attendance"
+        app:layout_constraintBottom_toTopOf="@id/bottomAppBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:backgroundTint="#111945"
+        app:tint="@android:color/white" />
+
+
 
     <LinearLayout
         android:id="@+id/bottomAppBar"

@@ -13,6 +13,7 @@ import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
+import androidx.navigation.findNavController
 import com.example.classclockin.R
 import com.example.classclockin.Student
 import com.example.classclockin.databinding.FragmentHomeBinding
@@ -41,6 +42,16 @@ class MarkAttendanceFragment : Fragment() {
 
         loadStudents()
         setupDateInput()
+
+        // Handle back button click
+        binding.btnBack.setOnClickListener {
+            it.findNavController().navigate(R.id.action_viewStudentList_to_homeFragment)
+        }
+
+        binding.fabSaveAttendance.setOnClickListener {
+            saveAttendance()
+        }
+
 
         return binding.root
     }
@@ -150,6 +161,14 @@ class MarkAttendanceFragment : Fragment() {
         return studentView
     }
 
+    private fun saveAttendance() {
+        for (student in studentList) {
+            updateAttendance(student)
+        }
+        // Display a Toast message after saving attendance
+        Toast.makeText(requireContext(), "Attendance saved successfully!", Toast.LENGTH_SHORT).show()
+    }
+
     private fun updateAttendance(student: Student) {
         val attendanceRef = database.child("students").child(student.studentId!!).child("attendanceRecords").child(selectedDate)
 
@@ -160,6 +179,8 @@ class MarkAttendanceFragment : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Failed to update attendance", Toast.LENGTH_SHORT).show()
             }
+
+        displayStudents()
     }
 
     private fun getCurrentDate(): String {
