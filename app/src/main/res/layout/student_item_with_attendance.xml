@@ -18,7 +18,7 @@
             android:layout_height="48dp"
             android:layout_gravity="center_vertical"
             android:layout_marginEnd="8dp"
-            android:src="@drawable/placeholder_image"
+            android:src="@drawable/placeholder_image_black"
             android:background="?android:attr/selectableItemBackground"
             android:scaleType="centerCrop" />
 

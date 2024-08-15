@@ -45,7 +45,7 @@ class MarkAttendanceFragment : Fragment() {
 
         // Handle back button click
         binding.btnBack.setOnClickListener {
-            it.findNavController().navigate(R.id.action_viewStudentList_to_homeFragment)
+            it.findNavController().navigate(R.id.action_markAttendanceFragment_to_homeFragment)
         }
 
         binding.fabSaveAttendance.setOnClickListener {
