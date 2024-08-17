@@ -37,6 +37,9 @@
         <action
             android:id="@+id/action_homeFragment_to_viewStudentList"
             app:destination="@id/viewStudentList" />
+        <action
+            android:id="@+id/action_homeFragment_to_attendanceSummary"
+            app:destination="@id/attendanceSummary" />
     </fragment>
     <fragment
         android:id="@+id/markAttendanceFragment"
@@ -54,6 +57,15 @@
         tools:layout="@layout/fragment_view_student_list" >
         <action
             android:id="@+id/action_viewStudentList_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/attendanceSummary"
+        android:name="com.example.classclockin.fragments.homeCards.AttendanceSummary"
+        android:label="fragment_attendance_summary"
+        tools:layout="@layout/fragment_attendance_summary" >
+        <action
+            android:id="@+id/action_attendanceSummary_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>
