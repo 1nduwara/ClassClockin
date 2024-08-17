@@ -31,6 +31,12 @@ class AttendanceSummary : Fragment() {
             it.findNavController().navigate(R.id.action_attendanceSummary_to_homeFragment)
         }
 
+        binding.navHome.setOnClickListener {
+            it.findNavController().navigate(R.id.action_attendanceSummary_to_homeFragment)
+        }
+
+
+
         return binding.root;
     }
 
