@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_homeFragment_to_attendanceSummary"
             app:destination="@id/attendanceSummary" />
+        <action
+            android:id="@+id/action_homeFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/markAttendanceFragment"
@@ -49,6 +52,9 @@
         <action
             android:id="@+id/action_markAttendanceFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_markAttendanceFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewStudentList"
@@ -58,14 +64,29 @@
         <action
             android:id="@+id/action_viewStudentList_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_viewStudentList_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
     </fragment>
     <fragment
         android:id="@+id/attendanceSummary"
-        android:name="com.example.classclockin.fragments.homeCards.AttendanceSummary"
+        android:name="com.example.classclockin.fragments.navPages.TodaysSummary"
         android:label="fragment_attendance_summary"
-        tools:layout="@layout/fragment_attendance_summary" >
+        tools:layout="@layout/fragment_todays_summary" >
         <action
             android:id="@+id/action_attendanceSummary_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_attendanceSummary_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.example.classclockin.fragments.navPages.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" >
+        <action
+            android:id="@+id/action_notificationFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

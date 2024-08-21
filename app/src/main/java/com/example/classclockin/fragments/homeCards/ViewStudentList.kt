@@ -41,10 +41,16 @@ class ViewStudentList : Fragment() {
             it.findNavController().navigate(R.id.action_viewStudentList_to_homeFragment)
         }
 
+        binding.navNotification.setOnClickListener{
+            it.findNavController().navigate(R.id.action_viewStudentList_to_notificationFragment)
+        }
+
         // Handle add student button click
         binding.fabAddStudent.setOnClickListener {
             addStudent()
         }
+
+
 
         // Load students from Firebase
         loadStudents()

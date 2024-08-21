@@ -1,4 +1,4 @@
-package com.example.classclockin.fragments.homeCards
+package com.example.classclockin.fragments.navPages
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,12 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.example.classclockin.R
-import com.example.classclockin.databinding.FragmentAttendanceSummaryBinding
+import com.example.classclockin.databinding.FragmentTodaysSummaryBinding
 
 
-class AttendanceSummary : Fragment() {
+class TodaysSummary : Fragment() {
 
-    private lateinit var binding: FragmentAttendanceSummaryBinding;
+    private lateinit var binding: FragmentTodaysSummaryBinding;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +25,7 @@ class AttendanceSummary : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentAttendanceSummaryBinding.inflate(inflater, container, false)
+        binding = FragmentTodaysSummaryBinding.inflate(inflater, container, false)
 
         binding.btnBack.setOnClickListener {
             it.findNavController().navigate(R.id.action_attendanceSummary_to_homeFragment)
@@ -34,8 +34,6 @@ class AttendanceSummary : Fragment() {
         binding.navHome.setOnClickListener {
             it.findNavController().navigate(R.id.action_attendanceSummary_to_homeFragment)
         }
-
-
 
         return binding.root;
     }
