@@ -1,4 +1,4 @@
-package com.example.classclockin.fragments.homeCards
+package com.example.classclockin.fragments.homeCards.viewStudentList
 
 import android.app.Activity
 import android.app.AlertDialog

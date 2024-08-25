@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.homeCards.ViewStudentList">
+    tools:context=".fragments.homeCards.viewStudentList.ViewStudentList">
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/topAppBar"
