@@ -5,10 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
 import com.example.classclockin.R
+import com.example.classclockin.databinding.FragmentStudentDetailsBinding
 
 
 class StudentDetailsFragment : Fragment() {
+    lateinit var binding: FragmentStudentDetailsBinding
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +25,13 @@ class StudentDetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_student_details, container, false)
+        binding = FragmentStudentDetailsBinding.inflate(inflater, container, false)
+
+        binding.btnBack.setOnClickListener {
+            it.findNavController().navigate(R.id.action_studentDetailsFragment_to_viewStudentList)
+        }
+
+        return binding.root
     }
 
 

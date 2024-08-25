@@ -45,6 +45,15 @@ class ViewStudentList : Fragment() {
             it.findNavController().navigate(R.id.action_viewStudentList_to_notificationFragment)
         }
 
+        binding.navHome.setOnClickListener{
+            it.findNavController().navigate(R.id.action_viewStudentList_to_homeFragment)
+        }
+
+        binding.navAccount.setOnClickListener{
+            it.findNavController().navigate(R.id.action_viewStudentList_to_accountFragment)
+        }
+
+
         // Handle add student button click
         binding.fabAddStudent.setOnClickListener {
             addStudent()

@@ -35,6 +35,14 @@ class TodaysSummary : Fragment() {
             it.findNavController().navigate(R.id.action_attendanceSummary_to_homeFragment)
         }
 
+        binding.navNotification.setOnClickListener {
+            it.findNavController().navigate(R.id.action_attendanceSummary_to_notificationFragment)
+        }
+
+        binding.navAccount.setOnClickListener {
+            it.findNavController().navigate(R.id.action_attendanceSummary_to_accountFragment)
+        }
+
         return binding.root;
     }
 
