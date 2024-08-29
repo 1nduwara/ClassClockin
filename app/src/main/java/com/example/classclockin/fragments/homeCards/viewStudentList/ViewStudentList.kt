@@ -1,4 +1,4 @@
-package com.example.classclockin.fragments.homeCards
+package com.example.classclockin.fragments.homeCards.viewStudentList
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -41,10 +41,25 @@ class ViewStudentList : Fragment() {
             it.findNavController().navigate(R.id.action_viewStudentList_to_homeFragment)
         }
 
+        binding.navNotification.setOnClickListener{
+            it.findNavController().navigate(R.id.action_viewStudentList_to_notificationFragment)
+        }
+
+        binding.navHome.setOnClickListener{
+            it.findNavController().navigate(R.id.action_viewStudentList_to_homeFragment)
+        }
+
+        binding.navAccount.setOnClickListener{
+            it.findNavController().navigate(R.id.action_viewStudentList_to_accountFragment)
+        }
+
+
         // Handle add student button click
         binding.fabAddStudent.setOnClickListener {
             addStudent()
         }
+
+
 
         // Load students from Firebase
         loadStudents()

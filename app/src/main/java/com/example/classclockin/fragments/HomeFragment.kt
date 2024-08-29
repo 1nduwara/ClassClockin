@@ -42,6 +42,12 @@ class HomeFragment : Fragment() {
             it.findNavController().navigate(R.id.action_homeFragment_to_viewStudentList)
         }
 
+        binding.navNotification.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_notificationFragment)
+        }
+
+
+
 
 
         return binding.root

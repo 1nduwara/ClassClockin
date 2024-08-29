@@ -37,6 +37,15 @@
         <action
             android:id="@+id/action_homeFragment_to_viewStudentList"
             app:destination="@id/viewStudentList" />
+        <action
+            android:id="@+id/action_homeFragment_to_attendanceSummary"
+            app:destination="@id/attendanceSummary" />
+        <action
+            android:id="@+id/action_homeFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_attendanceSummaryFragment"
+            app:destination="@id/attendanceSummaryFragment" />
     </fragment>
     <fragment
         android:id="@+id/markAttendanceFragment"
@@ -46,14 +55,92 @@
         <action
             android:id="@+id/action_markAttendanceFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_markAttendanceFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_markAttendanceFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
     </fragment>
     <fragment
         android:id="@+id/viewStudentList"
-        android:name="com.example.classclockin.fragments.homeCards.ViewStudentList"
+        android:name="com.example.classclockin.fragments.homeCards.viewStudentList.ViewStudentList"
         android:label="fragment_view_student_list"
         tools:layout="@layout/fragment_view_student_list" >
         <action
             android:id="@+id/action_viewStudentList_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_viewStudentList_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_viewStudentList_to_studentDetailsFragment"
+            app:destination="@id/studentDetailsFragment" />
+        <action
+            android:id="@+id/action_viewStudentList_to_accountFragment"
+            app:destination="@id/accountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/attendanceSummary"
+        android:name="com.example.classclockin.fragments.navPages.TodaysSummary"
+        android:label="fragment_attendance_summary"
+        tools:layout="@layout/fragment_todays_summary" >
+        <action
+            android:id="@+id/action_attendanceSummary_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_attendanceSummary_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_attendanceSummary_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_attendanceSummary_to_homeFragment2"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.example.classclockin.fragments.navPages.NotificationFragment"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_notification" >
+        <action
+            android:id="@+id/action_notificationFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_notificationFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/attendanceSummaryFragment"
+        android:name="com.example.classclockin.fragments.homeCards.AttendanceSummaryFragment"
+        android:label="fragment_attendance_summary"
+        tools:layout="@layout/fragment_attendance_summary" >
+        <action
+            android:id="@+id/action_attendanceSummaryFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_attendanceSummaryFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentDetailsFragment"
+        android:name="com.example.classclockin.fragments.homeCards.viewStudentList.StudentDetailsFragment"
+        android:label="fragment_student_details"
+        tools:layout="@layout/fragment_student_details" >
+        <action
+            android:id="@+id/action_studentDetailsFragment_to_viewStudentList"
+            app:destination="@id/viewStudentList" />
+    </fragment>
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.example.classclockin.fragments.navPages.AccountFragment"
+        android:label="fragment_account"
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_accountFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_accountFragment_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
     </fragment>
 </navigation>

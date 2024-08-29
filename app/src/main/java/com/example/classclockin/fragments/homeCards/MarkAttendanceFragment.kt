@@ -52,6 +52,14 @@ class MarkAttendanceFragment : Fragment() {
             saveAttendance()
         }
 
+        binding.navNotification.setOnClickListener{
+            it.findNavController().navigate(R.id.action_markAttendanceFragment_to_notificationFragment)
+        }
+
+        binding.navAccount.setOnClickListener{
+            it.findNavController().navigate(R.id.action_markAttendanceFragment_to_accountFragment)
+        }
+
 
         return binding.root
     }

@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout5"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.homeCards.ViewStudentList">
+    tools:context=".fragments.homeCards.viewStudentList.ViewStudentList">
 
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/topAppBar"
@@ -125,10 +125,10 @@
         android:queryHint="Search Student"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintHorizontal_bias="0.093"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/topAppBar"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.366" />
 
     <Button
         android:id="@+id/button"
