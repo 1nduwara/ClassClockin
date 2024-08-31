@@ -46,6 +46,9 @@
         <action
             android:id="@+id/action_homeFragment_to_attendanceSummaryFragment"
             app:destination="@id/attendanceSummaryFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
     </fragment>
     <fragment
         android:id="@+id/markAttendanceFragment"

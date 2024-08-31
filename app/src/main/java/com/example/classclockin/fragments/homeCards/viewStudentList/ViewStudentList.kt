@@ -17,7 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.classclockin.R
-import com.example.classclockin.Student
+import com.example.classclockin.fragments.dataModels.Student
 import com.example.classclockin.databinding.FragmentViewStudentListBinding
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage

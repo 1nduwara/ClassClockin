@@ -8,17 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.findNavController
 import com.example.classclockin.R
-import com.example.classclockin.Student
-import com.example.classclockin.databinding.FragmentHomeBinding
+import com.example.classclockin.fragments.dataModels.Student
 import com.example.classclockin.databinding.FragmentMarkAttendanceBinding
-import com.google.android.material.textfield.TextInputEditText
+import com.example.classclockin.fragments.dataModels.Notification
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -173,9 +170,16 @@ class MarkAttendanceFragment : Fragment() {
         for (student in studentList) {
             updateAttendance(student)
         }
+//        addNotification("You have marked the attendance for $selectedDate", marked = true)
         // Display a Toast message after saving attendance
         Toast.makeText(requireContext(), "Attendance saved successfully!", Toast.LENGTH_SHORT).show()
     }
+
+//    private fun addNotification(message: String, marked: Boolean = false) {
+//        val notificationId = database.child("notifications").push().key ?: return
+//        val notification = Notification(notificationId, message, System.currentTimeMillis(), marked)
+//        database.child("notifications").child(notificationId).setValue(notification)
+//    }
 
     private fun updateAttendance(student: Student) {
         val attendanceRef = database.child("students").child(student.studentId!!).child("attendanceRecords").child(selectedDate)

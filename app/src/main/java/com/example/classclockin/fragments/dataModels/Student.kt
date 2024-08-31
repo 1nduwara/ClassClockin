@@ -1,4 +1,4 @@
-package com.example.classclockin
+package com.example.classclockin.fragments.dataModels
 
 data class Student(
     val studentId: String = "",
