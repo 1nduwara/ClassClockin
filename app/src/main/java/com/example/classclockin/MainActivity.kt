@@ -37,10 +37,7 @@ class MainActivity : AppCompatActivity() {
                     return fragment
                 }
             }
-
-            // Add the fragment to the activity
             if (savedInstanceState == null) {
-                // Instead of manual transaction, use NavController for navigation
                 navController.navigate(R.id.loginFragment)
             }
         }

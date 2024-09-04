@@ -289,9 +289,11 @@
         android:id="@+id/out_ct_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="14dp"
-        android:layout_marginBottom="35dp"
-        android:text="TextView"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="32dp"
+        android:text="TeacherID"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/divider2"
         app:layout_constraintStart_toEndOf="@+id/textView15" />
 
@@ -300,8 +302,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:layout_marginBottom="25dp"
-        android:text="TextView"
+        android:layout_marginBottom="18dp"
+        android:text=""
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/divider5"
         app:layout_constraintStart_toEndOf="@+id/textView22" />
 

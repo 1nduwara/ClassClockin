@@ -38,14 +38,11 @@
             android:id="@+id/action_homeFragment_to_viewStudentList"
             app:destination="@id/viewStudentList" />
         <action
-            android:id="@+id/action_homeFragment_to_attendanceSummary"
-            app:destination="@id/attendanceSummary" />
+            android:id="@+id/action_homeFragment_to_attendanceSummaryFragment"
+            app:destination="@id/attendanceSummaryFragment" />
         <action
             android:id="@+id/action_homeFragment_to_notificationFragment"
             app:destination="@id/notificationFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_attendanceSummaryFragment"
-            app:destination="@id/attendanceSummaryFragment" />
         <action
             android:id="@+id/action_homeFragment_to_accountFragment"
             app:destination="@id/accountFragment" />
@@ -83,24 +80,21 @@
             android:id="@+id/action_viewStudentList_to_accountFragment"
             app:destination="@id/accountFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/attendanceSummary"
-        android:name="com.example.classclockin.fragments.navPages.TodaysSummary"
-        android:label="fragment_attendance_summary"
-        tools:layout="@layout/fragment_todays_summary" >
-        <action
-            android:id="@+id/action_attendanceSummary_to_homeFragment"
-            app:destination="@id/homeFragment" />
-        <action
-            android:id="@+id/action_attendanceSummary_to_notificationFragment"
-            app:destination="@id/notificationFragment" />
-        <action
-            android:id="@+id/action_attendanceSummary_to_accountFragment"
-            app:destination="@id/accountFragment" />
-        <action
-            android:id="@+id/action_attendanceSummary_to_homeFragment2"
-            app:destination="@id/homeFragment" />
-    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/attendanceSummary"-->
+<!--        android:name="com.example.classclockin.fragments.homeCards.AttendanceSummaryFragment"-->
+<!--        android:label="fragment_attendance_summary"-->
+<!--        tools:layout="@layout/fragment_attendance_summary" >-->
+<!--        <action-->
+<!--            android:id="@+id/action_attendanceSummary_to_homeFragment"-->
+<!--            app:destination="@id/homeFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_attendanceSummary_to_notificationFragment"-->
+<!--            app:destination="@id/notificationFragment" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_attendanceSummary_to_accountFragment"-->
+<!--            app:destination="@id/accountFragment" />-->
+<!--    </fragment>-->
     <fragment
         android:id="@+id/notificationFragment"
         android:name="com.example.classclockin.fragments.navPages.NotificationFragment"
@@ -124,7 +118,31 @@
         <action
             android:id="@+id/action_attendanceSummaryFragment_to_notificationFragment"
             app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_attendanceSummaryFragment_to_TodaysSummary"
+            app:destination="@id/todaysSummary" />
     </fragment>
+    <fragment
+        android:id="@+id/todaysSummary"
+        android:name="com.example.classclockin.fragments.navPages.TodaysSummary"
+        android:label="Todays Summary">
+        <action
+            android:id="@+id/action_to_todaysSummary"
+            app:destination="@id/todaysSummary" />
+        <action
+            android:id="@+id/action_todaysSummary_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_todaysSummary_to_notificationFragment"
+            app:destination="@id/notificationFragment" />
+        <action
+            android:id="@+id/action_todaysSummary_to_accountFragment"
+            app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_todaysSummary_to_attendanceSummaryFragment"
+            app:destination="@id/attendanceSummaryFragment" />
+    </fragment>
+
     <fragment
         android:id="@+id/studentDetailsFragment"
         android:name="com.example.classclockin.fragments.homeCards.viewStudentList.StudentDetailsFragment"

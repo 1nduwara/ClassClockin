@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.SearchView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -27,16 +28,108 @@ class ViewStudentList : Fragment() {
 
     private lateinit var binding: FragmentViewStudentListBinding
     private lateinit var database: DatabaseReference
+    private var studentList = mutableListOf<Student>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentViewStudentListBinding.inflate(inflater, container, false)
-
         database = FirebaseDatabase.getInstance().reference
 
-        // Handle back button click
+        // Setup search functionality
+        setupSearchView()
+
+        // Handling all the button clicks
+        setupButtonListeners()
+
+        // Load students from Firebase
+        loadStudents()
+
+        return binding.root
+    }
+
+    private fun setupSearchView() {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterStudents(newText ?: "")
+                return true
+            }
+        })
+    }
+
+    private fun filterStudents(query: String) {
+        val filteredList = studentList.filter {
+            it.studentName?.contains(query, ignoreCase = true) == true
+        }
+        displayStudents(filteredList)
+    }
+
+    private fun loadStudents() {
+        database.child("students").orderByChild("studentName").addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                studentList.clear()  // Clear the list before adding new data
+                for (studentSnapshot in snapshot.children) {
+                    val student = studentSnapshot.getValue(Student::class.java)
+                    // Ensure student ID is not null or empty
+                    if (!student?.studentId.isNullOrEmpty()) {
+                        student?.let { studentList.add(it) }
+                    }
+                }
+                displayStudents(studentList)  // Display all students initially
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Toast.makeText(context, "Failed to load students", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun displayStudents(students: List<Student>) {
+        binding.studentListLayout.removeAllViews()
+        var currentLetter = ""
+
+        for (student in students) {
+            val firstLetter = student.studentName?.firstOrNull()?.uppercase(Locale.getDefault()).toString()
+            if (firstLetter != currentLetter) {
+                currentLetter = firstLetter
+                val letterView = LayoutInflater.from(context).inflate(R.layout.letter_separator, null)
+                val letterText = letterView.findViewById<TextView>(R.id.letterText)
+                letterText.text = currentLetter
+                binding.studentListLayout.addView(letterView)
+            }
+
+            val studentView = createStudentView(student)
+            binding.studentListLayout.addView(studentView)
+        }
+    }
+
+    private fun createStudentView(student: Student?): View {
+        val studentView = LayoutInflater.from(context).inflate(R.layout.student_item, null)
+        val studentName = studentView.findViewById<TextView>(R.id.studentName)
+        val studentId = studentView.findViewById<TextView>(R.id.studentId)
+        val studentAttendance = studentView.findViewById<TextView>(R.id.studentAttendance)
+        val studentPhoto = studentView.findViewById<ImageView>(R.id.studentPhoto)
+
+        studentName.text = student?.studentName
+        studentId.text = "ID: ${student?.studentId}"
+        studentAttendance.text = "${student?.studentAttendance?.toInt()}%"
+
+        // Load student photo using Glide or similar library
+        if (!student?.studentPhoto.isNullOrEmpty()) {
+            Glide.with(this).load(student?.studentPhoto).into(studentPhoto)
+        } else {
+            studentPhoto.setImageResource(R.drawable.placeholder_image) // default image if no photo
+        }
+
+        return studentView
+    }
+
+    private fun setupButtonListeners() {
         binding.btnBack.setOnClickListener {
             it.findNavController().navigate(R.id.action_viewStudentList_to_homeFragment)
         }
@@ -53,18 +146,15 @@ class ViewStudentList : Fragment() {
             it.findNavController().navigate(R.id.action_viewStudentList_to_accountFragment)
         }
 
-
         // Handle add student button click
         binding.fabAddStudent.setOnClickListener {
             addStudent()
         }
 
-
-
-        // Load students from Firebase
-        loadStudents()
-
-        return binding.root
+        // Handle filter by attendance button click
+        binding.btnFilter.setOnClickListener {
+            filterByAttendance()
+        }
     }
 
     private fun addStudent() {
@@ -151,63 +241,10 @@ class ViewStudentList : Fragment() {
         }
     }
 
-
-
-    private fun loadStudents() {
-        database.child("students").orderByChild("studentName").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                binding.studentListLayout.removeAllViews()
-                var currentLetter = ""
-
-                val studentsList = mutableListOf<Student>()
-
-                for (studentSnapshot in snapshot.children) {
-                    val student = studentSnapshot.getValue(Student::class.java)
-                    student?.let { studentsList.add(it) }
-                }
-
-                studentsList.sortBy { it.studentName?.toUpperCase(Locale.getDefault()) }
-
-                for (student in studentsList) {
-                    val firstLetter = student.studentName?.firstOrNull()?.toUpperCase().toString()
-                    if (firstLetter != currentLetter) {
-                        currentLetter = firstLetter
-                        val letterView = LayoutInflater.from(context).inflate(R.layout.letter_separator, null)
-                        val letterText = letterView.findViewById<TextView>(R.id.letterText)
-                        letterText.text = currentLetter
-                        binding.studentListLayout.addView(letterView)
-                    }
-
-                    val studentView = createStudentView(student)
-                    binding.studentListLayout.addView(studentView)
-                }
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-                // Handle database error
-            }
-        })
+    private fun filterByAttendance() {
+        val sortedList = studentList.sortedBy { it.studentAttendance }
+        displayStudents(sortedList)
     }
-
-    private fun createStudentView(student: Student?): View {
-        val studentView = LayoutInflater.from(context).inflate(R.layout.student_item, null)
-        val studentName = studentView.findViewById<TextView>(R.id.studentName)
-        val studentId = studentView.findViewById<TextView>(R.id.studentId)
-        val studentAttendance = studentView.findViewById<TextView>(R.id.studentAttendance)
-        val studentPhoto = studentView.findViewById<ImageView>(R.id.studentPhoto)
-
-        studentName.text = student?.studentName
-        studentId.text = "ID: ${student?.studentId}"
-        studentAttendance.text = "${student?.studentAttendance?.toInt()}%"
-
-        // Load student photo using Glide or similar library
-        if (!student?.studentPhoto.isNullOrEmpty()) {
-            Glide.with(this).load(student?.studentPhoto).into(studentPhoto)
-        } else {
-            studentPhoto.setImageResource(R.drawable.placeholder_image) // default image if no photo
-        }
-
-        return studentView
-    }
-
 }
+
+

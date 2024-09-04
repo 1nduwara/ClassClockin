@@ -1,5 +1,6 @@
 package com.example.classclockin.fragments.navPages
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,9 +13,12 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.classclockin.R
 import com.example.classclockin.databinding.FragmentAccountBinding
+import com.example.classclockin.fragments.dataModels.User
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.EmailAuthProvider
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class AccountFragment : Fragment() {
 
@@ -43,6 +47,20 @@ class AccountFragment : Fragment() {
         binding.btnResetPwd.setOnClickListener {
             showResetPasswordDialog()
         }
+
+        binding.btnEditProfile.setOnClickListener {
+            val user = auth.currentUser
+            if (user != null) {
+                fetchTeacherInfo() { teacher ->
+                    showEditProfileDialog(teacher)
+                }
+            } else {
+                Toast.makeText(context, "No authenticated user found", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        // Fetch and display teacher info
+        fetchTeacherInfo()
 
         return binding.root
     }
@@ -155,6 +173,150 @@ class AccountFragment : Fragment() {
             }
         } else {
             Toast.makeText(context, "No authenticated user found", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun fetchTeacherInfo(callback: ((User) -> Unit)? = null) {
+        val user = auth.currentUser
+        if (user != null) {
+            val userEmail = user.email
+
+            val database = FirebaseDatabase.getInstance()
+            val usersRef = database.getReference("users")
+
+            // Query to find the user with the matching email
+            val query = usersRef.orderByChild("emailAddress").equalTo(userEmail)
+
+            query.get().addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val result = task.result
+                    if (result.exists()) {
+                        for (snapshot in result.children) {
+                            val teacher = snapshot.getValue(User::class.java)
+                            teacher?.let {
+                                populateTeacherInfo(it)
+                                if (callback != null) {
+                                    callback(it)
+                                } // Pass the teacher object back
+                            }
+                        }
+                    } else {
+                        Toast.makeText(context, "No matching user found", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    val errorMessage = task.exception?.message
+                    Toast.makeText(context, "Failed to load teacher info: $errorMessage", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+        } else {
+            Toast.makeText(context, "No authenticated user found", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+
+    private fun populateTeacherInfo(teacher: User) {
+        binding.txtCTName.text = teacher.firstName
+        binding.outCtId.text = teacher.teacherId
+        binding.outCtPhone.text = teacher.phoneNumber
+        binding.outCtEmail.text = teacher.emailAddress
+        // Display the user's birthday
+        binding.outCtDob.text = teacher.birthday
+    }
+
+    @SuppressLint("MissingInflatedId")
+    private fun showEditProfileDialog(teacher: User) {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_edit_profile, null)
+
+        val etFirstName = dialogView.findViewById<TextInputEditText>(R.id.et_first_name)
+        val etLastName = dialogView.findViewById<TextInputEditText>(R.id.et_last_name)
+        val etPhoneNumber = dialogView.findViewById<TextInputEditText>(R.id.et_phone_number)
+        val etBirthday = dialogView.findViewById<TextInputEditText>(R.id.et_birthDay)
+
+        // Pre-fill the fields with the current data
+        etFirstName.setText(teacher.firstName)
+        etLastName.setText(teacher.lastName)
+        etPhoneNumber.setText(teacher.phoneNumber)
+        etBirthday.setText(teacher.birthday)
+
+        val dialog = AlertDialog.Builder(requireContext())
+            .setTitle("Edit Profile")
+            .setView(dialogView)
+            .setPositiveButton("Save", null)
+            .setNegativeButton("Cancel", null)
+            .create()
+
+        dialog.setOnShowListener {
+            val saveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            saveButton.setOnClickListener {
+                val newFirstName = etFirstName.text.toString().trim()
+                val newLastName = etLastName.text.toString().trim()
+                val newPhoneNumber = etPhoneNumber.text.toString().trim()
+                val newBirthday = etBirthday.text.toString().trim()
+
+                if (newFirstName.isEmpty() || newLastName.isEmpty() || newPhoneNumber.isEmpty() || newBirthday.isEmpty()) {
+                    Toast.makeText(context, "Please fill all fields", Toast.LENGTH_SHORT).show()
+                    return@setOnClickListener
+                }
+
+                // Update the user's information in the database
+                updateTeacherInfo(
+                    teacher.emailAddress,
+                    newFirstName,
+                    newLastName,
+                    newPhoneNumber,
+                    newBirthday
+                )
+
+                dialog.dismiss()
+            }
+        }
+
+        dialog.show()
+    }
+
+    private fun updateTeacherInfo(
+        email: String,
+        firstName: String,
+        lastName: String,
+        phoneNumber: String,
+        birthday: String
+    ) {
+        val database = FirebaseDatabase.getInstance()
+        val usersRef: DatabaseReference = database.getReference("users")
+
+        val query = usersRef.orderByChild("emailAddress").equalTo(email)
+        query.get().addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                val result = task.result
+                if (result.exists()) {
+                    for (snapshot in result.children) {
+                        val userId = snapshot.key
+                        userId?.let {
+                            val userRef = usersRef.child(it)
+                            userRef.child("firstName").setValue(firstName)
+                            userRef.child("lastName").setValue(lastName)
+                            userRef.child("phoneNumber").setValue(phoneNumber)
+                            userRef.child("birthday").setValue(birthday).addOnCompleteListener { updateTask ->
+                                if (updateTask.isSuccessful) {
+                                    Toast.makeText(context, "Profile updated successfully", Toast.LENGTH_SHORT)
+                                        .show()
+                                    // Fetch and refresh the teacher info on the screen
+                                    fetchTeacherInfo()
+                                } else {
+                                    Toast.makeText(context, "Failed to update profile", Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    Toast.makeText(context, "No matching user found", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+                val errorMessage = task.exception?.message
+                Toast.makeText(context, "Failed to update profile: $errorMessage", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

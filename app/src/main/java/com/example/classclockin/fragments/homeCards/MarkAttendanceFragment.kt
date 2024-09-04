@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.SearchView
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
@@ -39,6 +40,8 @@ class MarkAttendanceFragment : Fragment() {
 
         loadStudents()
         setupDateInput()
+        setupSearchView()
+
 
         // Handle back button click
         binding.btnBack.setOnClickListener {
@@ -60,6 +63,36 @@ class MarkAttendanceFragment : Fragment() {
 
         return binding.root
     }
+
+    private fun setupSearchView() {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterStudents(newText ?: "")
+                return true
+            }
+        })
+    }
+
+    private fun filterStudents(query: String) {
+        val filteredList = studentList.filter {
+            it.studentName?.contains(query, ignoreCase = true) == true
+        }
+        displayFilteredStudents(filteredList)
+    }
+
+    private fun displayFilteredStudents(filteredList: List<Student>) {
+        binding.studentListLayout.removeAllViews()
+
+        for (student in filteredList) {
+            val studentView = createStudentView(student)
+            binding.studentListLayout.addView(studentView)
+        }
+    }
+
 
     private fun setupDateInput() {
         binding.dateInput.setOnClickListener {
@@ -91,7 +124,10 @@ class MarkAttendanceFragment : Fragment() {
                 studentList.clear()
                 for (studentSnapshot in snapshot.children) {
                     val student = studentSnapshot.getValue(Student::class.java)
-                    student?.let { studentList.add(it) }
+                    // Ensure student ID is not null or empty
+                    if (!student?.studentId.isNullOrEmpty()) {
+                        student?.let { studentList.add(it) }
+                    }
                 }
                 displayStudents()
             }
@@ -101,6 +137,8 @@ class MarkAttendanceFragment : Fragment() {
             }
         })
     }
+
+
 
     private fun displayStudents() {
         binding.studentListLayout.removeAllViews()
@@ -170,16 +208,10 @@ class MarkAttendanceFragment : Fragment() {
         for (student in studentList) {
             updateAttendance(student)
         }
-//        addNotification("You have marked the attendance for $selectedDate", marked = true)
+
         // Display a Toast message after saving attendance
         Toast.makeText(requireContext(), "Attendance saved successfully!", Toast.LENGTH_SHORT).show()
     }
-
-//    private fun addNotification(message: String, marked: Boolean = false) {
-//        val notificationId = database.child("notifications").push().key ?: return
-//        val notification = Notification(notificationId, message, System.currentTimeMillis(), marked)
-//        database.child("notifications").child(notificationId).setValue(notification)
-//    }
 
     private fun updateAttendance(student: Student) {
         val attendanceRef = database.child("students").child(student.studentId!!).child("attendanceRecords").child(selectedDate)

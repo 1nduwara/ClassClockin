@@ -60,6 +60,19 @@ class HomeFragment : Fragment() {
             it.findNavController().navigate(R.id.action_homeFragment_to_accountFragment)
         }
 
+        //attendance summary
+        binding.crd3ImgAttSummary.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_attendanceSummaryFragment)
+        }
+
+        binding.crd3TxtAttendanceSummary.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_attendanceSummaryFragment)
+        }
+
+        binding.crd2AttendanceSummary.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_attendanceSummaryFragment)
+        }
+
         return binding.root
     }
 }

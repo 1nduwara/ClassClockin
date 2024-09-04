@@ -62,58 +62,30 @@
         app:layout_constraintVertical_bias="0.366" />
 
     <Button
-        android:id="@+id/button"
-        android:layout_width="103dp"
-        android:layout_height="47dp"
+        android:id="@+id/btnTodaySummary"
+        android:layout_width="120dp"
+        android:layout_height="60dp"
         android:layout_marginTop="17dp"
-        android:text="filter"
+        android:text="Today's Summary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/searchView"
         app:layout_constraintTop_toBottomOf="@+id/topAppBar"
-        app:layout_constraintVertical_bias="0.0"
         tools:ignore="TouchTargetSizeCheck" />
 
 
-    <ScrollView
-        android:layout_width="408dp"
-        android:layout_height="642dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginBottom="3dp"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@+id/bottomAppBar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topAppBar"
-        app:layout_constraintVertical_bias="0.2">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AttendanceSummaryFragment">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linearLayout3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="382dp"
+            android:layout_height="697dp"
+            android:layout_margin="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardView"
-                android:layout_width="355dp"
-                android:layout_height="92dp"
-                android:layout_marginTop="52dp"
-                android:background="#4C1B1B"
-                android:backgroundTint="#B0C1D0"
-                android:elevation="20dp"
-                app:cardCornerRadius="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:src="@android:drawable/ic_menu_close_clear_cancel"
-                    app:layout_constraintEnd_toEndOf="parent" />
-            </androidx.cardview.widget.CardView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
