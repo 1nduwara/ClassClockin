@@ -71,11 +71,9 @@ class AccountFragment : Fragment() {
         val etNewPassword = dialogView.findViewById<TextInputEditText>(R.id.et_new_password)
         val etConfirmPassword = dialogView.findViewById<TextInputEditText>(R.id.et_confirm_password)
 
-        val tvCurrentPasswordError =
-            dialogView.findViewById<TextView>(R.id.tv_current_password_error)
+        val tvCurrentPasswordError = dialogView.findViewById<TextView>(R.id.tv_current_password_error)
         val tvNewPasswordError = dialogView.findViewById<TextView>(R.id.tv_new_password_error)
-        val tvConfirmPasswordError =
-            dialogView.findViewById<TextView>(R.id.tv_confirm_password_error)
+        val tvConfirmPasswordError = dialogView.findViewById<TextView>(R.id.tv_confirm_password_error)
 
         val dialog = AlertDialog.Builder(requireContext())
             .setTitle("Reset Password")
@@ -98,28 +96,29 @@ class AccountFragment : Fragment() {
                 tvNewPasswordError.visibility = View.GONE
                 tvConfirmPasswordError.visibility = View.GONE
 
-                // Validation logic
+                // Validate current password
                 if (currentPassword.isEmpty()) {
                     tvCurrentPasswordError.text = "Please enter your current password"
                     tvCurrentPasswordError.visibility = View.VISIBLE
                     isValid = false
                 }
 
+                // Validate new password
                 if (newPassword.isEmpty()) {
                     tvNewPasswordError.text = "Please enter a new password"
                     tvNewPasswordError.visibility = View.VISIBLE
                     isValid = false
-                } else if (newPassword.length < 6) {
-                    tvNewPasswordError.text = "New password must be at least 6 characters long"
+                } else if (!isPasswordValid(newPassword)) {
+                    tvNewPasswordError.text = "Password must be at least 8 characters long, contain upper and lowercase letters, numbers, and special characters"
                     tvNewPasswordError.visibility = View.VISIBLE
                     isValid = false
                 } else if (newPassword == currentPassword) {
-                    tvNewPasswordError.text =
-                        "New password cannot be the same as the current password"
+                    tvNewPasswordError.text = "New password cannot be the same as the current password"
                     tvNewPasswordError.visibility = View.VISIBLE
                     isValid = false
                 }
 
+                // Validate confirm password
                 if (confirmPassword.isEmpty()) {
                     tvConfirmPasswordError.text = "Please confirm your new password"
                     tvConfirmPasswordError.visibility = View.VISIBLE
@@ -139,6 +138,13 @@ class AccountFragment : Fragment() {
 
         dialog.show()
     }
+
+    // Helper function to validate the new password
+    private fun isPasswordValid(password: String): Boolean {
+        val passwordPattern = Regex("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@#\$%^&+=!]).{8,}$")
+        return password.matches(passwordPattern)
+    }
+
 
 
     private fun updatePassword(

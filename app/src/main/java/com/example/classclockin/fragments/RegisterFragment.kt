@@ -52,6 +52,9 @@ class RegisterFragment : Fragment() {
         val password = binding.etPassword.text.toString().trim()
         val confirmPassword = binding.etConfirmPassword.text.toString().trim()
 
+        // Password validation criteria
+        val passwordPattern = "(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+\$).{8,}".toRegex()
+
         if (firstName.isEmpty() || lastName.isEmpty() || teacherId.isEmpty() || phoneNumber.isEmpty() || emailAddress.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             Toast.makeText(context, "Please fill all the fields!", Toast.LENGTH_SHORT).show()
             return
@@ -60,6 +63,13 @@ class RegisterFragment : Fragment() {
         if (password != confirmPassword) {
             Toast.makeText(context, "Passwords do not match!", Toast.LENGTH_SHORT).show()
             return
+        }
+
+        if (!passwordPattern.matches(password)) {
+            binding.tilPassword.error = "Password must be 8+ characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character."
+            return
+        } else {
+            binding.tilPassword.error = null
         }
 
         auth.createUserWithEmailAndPassword(emailAddress, password)
@@ -83,6 +93,7 @@ class RegisterFragment : Fragment() {
                 }
             }
     }
+
 
     private fun saveUserData(firstName: String, lastName: String, teacherId: String, phoneNumber: String, emailAddress: String) {
         val user = User(

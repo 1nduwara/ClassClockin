@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout2"
@@ -7,15 +8,14 @@
     android:layout_height="match_parent"
     tools:context=".fragments.RegisterFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
+    <!-- Top AppBar with Back Button and Title -->
     <com.google.android.material.bottomappbar.BottomAppBar
         android:id="@+id/topAppBar"
         android:layout_width="423dp"
         android:layout_height="78dp"
-        android:layout_gravity="top"
         app:backgroundTint="#111945"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="BottomAppBar">
@@ -28,167 +28,167 @@
             android:clickable="true"
             android:contentDescription="back_button"
             android:src="@drawable/icon_back"
-            app:layout_constraintBottom_toBottomOf="@+id/topAppBar"
-            app:layout_constraintStart_toStartOf="@+id/topAppBar"
-            app:layout_constraintTop_toTopOf="@+id/textView3"
-            app:layout_constraintVertical_bias="0.615"
             tools:ignore="TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/txt_reg_form"
             android:layout_width="260dp"
             android:layout_height="40dp"
-            android:text="Registration Form"
             android:layout_marginStart="10dp"
+            android:text="Registration Form"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="28dp"
-            android:textStyle="bold"
-            tools:layout_editor_absoluteX="81dp"
-            tools:layout_editor_absoluteY="19dp" />
+            android:textStyle="bold" />
     </com.google.android.material.bottomappbar.BottomAppBar>
 
-<!--    Confirm Password -->
-    <EditText
-        android:id="@+id/etConfirmPassword"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilFirstName"
         android:layout_width="288dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="32dp"
-        android:background="@android:drawable/editbox_background_normal"
-        android:ems="10"
-        android:hint="Confirm Password"
-        android:inputType="textPassword"
-        android:textAlignment="textStart"
-        app:layout_constraintBottom_toTopOf="@+id/chkbx_terms"
-        app:layout_constraintEnd_toEndOf="@+id/chkbx_terms"
-        app:layout_constraintStart_toStartOf="@+id/chkbx_terms" />
-
-<!--    Email Address -->
-    <EditText
-        android:id="@+id/etEmailAddress"
-        android:layout_width="288dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="32dp"
-        android:background="@android:drawable/editbox_background_normal"
-
-        android:ems="10"
-        android:hint="E-mail Address"
-        android:inputType="textEmailAddress"
-        android:textAlignment="textStart"
-        app:layout_constraintBottom_toTopOf="@+id/etPassword"
-        app:layout_constraintEnd_toEndOf="@+id/etPassword"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etPassword" />
-
-<!--    Teacher ID -->
-    <EditText
-        android:id="@+id/etTeacherId"
-        android:layout_width="288dp"
-        android:layout_height="50dp"
-
-        android:layout_marginBottom="32dp"
-        android:background="@android:drawable/editbox_background_normal"
-        android:ems="10"
-        android:hint="Teacher ID"
-        android:inputType="text"
-        android:textAlignment="textStart"
-        app:layout_constraintBottom_toTopOf="@+id/etPhoneNumber"
-        app:layout_constraintEnd_toEndOf="@+id/etPhoneNumber"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etPhoneNumber" />
-
-<!--    Password -->
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="288dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="32dp"
-        android:background="@android:drawable/editbox_background_normal"
-        android:ems="10"
-        android:hint="Password"
-
-        android:inputType="textPassword"
-        android:textAlignment="textStart"
-        app:layout_constraintBottom_toTopOf="@+id/etConfirmPassword"
-        app:layout_constraintEnd_toEndOf="@+id/etConfirmPassword"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etConfirmPassword" />
-
-<!--    Phone Number -->
-    <EditText
-        android:id="@+id/etPhoneNumber"
-        android:layout_width="288dp"
-        android:layout_height="50dp"
-
-        android:layout_marginBottom="32dp"
-        android:background="@android:drawable/editbox_background_normal"
-        android:ems="10"
-        android:hint="Phone Number"
-        android:inputType="phone"
-        android:textAlignment="textStart"
-        app:layout_constraintBottom_toTopOf="@+id/etEmailAddress"
-        app:layout_constraintEnd_toEndOf="@+id/etEmailAddress"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etEmailAddress" />
-
-<!--    Last Name-->
-    <EditText
-        android:id="@+id/etLastName"
-        android:layout_width="288dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="32dp"
-        android:background="@android:drawable/editbox_background_normal"
-        android:ems="10"
-        android:hint="Last Name"
-        android:inputType="text"
-        android:textAlignment="textStart"
-        app:layout_constraintBottom_toTopOf="@+id/etTeacherId"
-        app:layout_constraintEnd_toEndOf="@+id/etTeacherId"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etTeacherId" />
-
-<!--    First Name -->
-    <EditText
-        android:id="@+id/etFirstName"
-        android:layout_width="288dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="64dp"
-        android:layout_marginBottom="32dp"
-        android:background="@android:drawable/editbox_background_normal"
-        android:ems="10"
-        android:hint="First Name"
-        android:inputType="text"
-        android:textAlignment="textStart"
-        app:layout_constraintBottom_toTopOf="@+id/etLastName"
-        app:layout_constraintEnd_toEndOf="@+id/etLastName"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/etLastName"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/topAppBar"
-        app:layout_constraintVertical_bias="0.909" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        app:errorEnabled="true">
 
-<!--    Agree to terms and conditions -->
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etFirstName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="First Name"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Last Name -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilLastName"
+        android:layout_width="288dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tilFirstName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etLastName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Last Name"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Teacher ID -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilTeacherId"
+        android:layout_width="288dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tilLastName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etTeacherId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Teacher ID"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Phone Number -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPhoneNumber"
+        android:layout_width="288dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tilTeacherId"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:inputType="phone" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Email Address -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilEmailAddress"
+        android:layout_width="288dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tilPhoneNumber"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etEmailAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="E-mail Address"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Password -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilPassword"
+        android:layout_width="288dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tilEmailAddress"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Confirm Password -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilConfirmPassword"
+        android:layout_width="288dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/tilPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:errorEnabled="true">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirm Password"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Agree to terms and conditions -->
     <CheckBox
         android:id="@+id/chkbx_terms"
         android:layout_width="288dp"
-        android:layout_height="51dp"
-        android:layout_marginBottom="32dp"
-        android:text="@string/chkbx_terms"
-        app:layout_constraintBottom_toTopOf="@+id/btnReg"
-        app:layout_constraintEnd_toEndOf="@+id/btnReg"
-        app:layout_constraintStart_toStartOf="@+id/btnReg" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Agree to terms and conditions"
+        app:layout_constraintTop_toBottomOf="@+id/tilConfirmPassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-<!--    Register Button -->
+    <!-- Register Button -->
     <Button
         android:id="@+id/btnReg"
         android:layout_width="288dp"
         android:layout_height="58dp"
-        android:layout_marginBottom="52dp"
-        android:clickable="true"
+        android:layout_marginTop="32dp"
         android:text="REGISTER"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@+id/chkbx_terms"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
