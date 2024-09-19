@@ -32,3 +32,4 @@ class AttendanceSummaryTest {
         assertEquals("0", summary.totalAbsent)
     }
 }
+
