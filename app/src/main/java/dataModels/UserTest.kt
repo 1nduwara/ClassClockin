@@ -27,6 +27,7 @@ class UserTest {
         assertEquals("1990-01-01", user.birthday)
     }
 
+
     @Test
     fun testDefaultUserValues() {
         // Initialize the User object with default values
