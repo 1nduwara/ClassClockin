@@ -52,6 +52,7 @@ class AttendanceSummaryFragment : Fragment() {
             it.findNavController().navigate(R.id.action_attendanceSummaryFragment_to_homeFragment)
         }
 
+        // Button Today's Summary
         binding.btnTodaySummary.setOnClickListener {
             it.findNavController().navigate(R.id.action_attendanceSummaryFragment_to_TodaysSummary)
         }

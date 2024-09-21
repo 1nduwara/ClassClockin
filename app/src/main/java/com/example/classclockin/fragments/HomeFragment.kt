@@ -29,6 +29,8 @@ class HomeFragment : Fragment() {
         // Setting the current date to the TextView
         binding.crd1TxtDate.text = "Today is $currentDate"
 
+
+        //navigation to  Mark Attendance fragment
         binding.crd2TxtMarkAttendance.setOnClickListener{
             it.findNavController().navigate(R.id.action_homeFragment_to_markAttendanceFragment)
         }
@@ -39,6 +41,20 @@ class HomeFragment : Fragment() {
             it.findNavController().navigate(R.id.action_homeFragment_to_markAttendanceFragment)
         }
 
+        //navigation to Attendance Summary fragment
+        binding.crd3ImgAttSummary.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_attendanceSummaryFragment)
+        }
+
+        binding.crd3TxtAttendanceSummary.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_attendanceSummaryFragment)
+        }
+
+        binding.crd2AttendanceSummary.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_attendanceSummaryFragment)
+        }
+
+        //navigation to View Student List fragment
         binding.crd2ViewStudentList.setOnClickListener{
             it.findNavController().navigate(R.id.action_homeFragment_to_viewStudentList)
         }
@@ -51,27 +67,17 @@ class HomeFragment : Fragment() {
             it.findNavController().navigate(R.id.action_homeFragment_to_viewStudentList)
         }
 
-        binding.navNotification.setOnClickListener{
-            it.findNavController().navigate(R.id.action_homeFragment_to_notificationFragment)
-        }
-
         //navigation to account fragment
         binding.navAccount.setOnClickListener{
             it.findNavController().navigate(R.id.action_homeFragment_to_accountFragment)
         }
 
-        //attendance summary
-        binding.crd3ImgAttSummary.setOnClickListener{
-            it.findNavController().navigate(R.id.action_homeFragment_to_attendanceSummaryFragment)
+        //navigation to notification fragment
+        binding.navNotification.setOnClickListener{
+            it.findNavController().navigate(R.id.action_homeFragment_to_notificationFragment)
         }
 
-        binding.crd3TxtAttendanceSummary.setOnClickListener{
-            it.findNavController().navigate(R.id.action_homeFragment_to_attendanceSummaryFragment)
-        }
 
-        binding.crd2AttendanceSummary.setOnClickListener{
-            it.findNavController().navigate(R.id.action_homeFragment_to_attendanceSummaryFragment)
-        }
 
         return binding.root
     }

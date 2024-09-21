@@ -109,17 +109,17 @@
         app:tint="@android:color/white" />
 
 
-
     <LinearLayout
         android:id="@+id/bottomAppBar"
         android:layout_width="414dp"
         android:layout_height="80dp"
         android:background="#111945"
+        android:orientation="horizontal"
         android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="BottomAppBar,MissingPrefix" >
+        tools:ignore="BottomAppBar,MissingPrefix">
 
         <ImageView
             android:id="@+id/nav_account"
