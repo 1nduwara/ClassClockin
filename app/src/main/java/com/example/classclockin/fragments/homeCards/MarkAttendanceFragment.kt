@@ -8,11 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.SearchView
 import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.findNavController
+import com.bumptech.glide.Glide
 import com.example.classclockin.R
 import com.example.classclockin.fragments.dataModels.Student
 import com.example.classclockin.databinding.FragmentMarkAttendanceBinding
@@ -164,6 +166,7 @@ class MarkAttendanceFragment : Fragment() {
         val studentView = LayoutInflater.from(context).inflate(R.layout.student_item_with_attendance, null)
         val nameTextView = studentView.findViewById<TextView>(R.id.txt_student_name)
         val attendanceSpinner = studentView.findViewById<Spinner>(R.id.spinner_attendance)
+        val studentPhotoImageView = studentView.findViewById<ImageView>(R.id.img_student_profile) // Add this line
 
         val attendanceOptions = resources.getStringArray(R.array.attendance_options)
         val adapter = ArrayAdapter(
@@ -174,12 +177,14 @@ class MarkAttendanceFragment : Fragment() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         attendanceSpinner.adapter = adapter
 
+        // Set the student's current attendance in the spinner
         when (student.studentAttendance) {
             100.0f -> attendanceSpinner.setSelection(0) // Present
             0.0f -> attendanceSpinner.setSelection(1)   // Absent
             else -> attendanceSpinner.setSelection(2)   // Late
         }
 
+        // Handle attendance selection change
         attendanceSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
                 val newAttendance = when (position) {
@@ -198,6 +203,17 @@ class MarkAttendanceFragment : Fragment() {
                 // Do nothing
             }
         }
+
+        // Load student photo using Glide or set placeholder if no photo is available
+        if (!student.studentPhoto.isNullOrEmpty()) {
+            Glide.with(this)
+                .load(student.studentPhoto)
+                .placeholder(R.drawable.placeholder_image_black)  // Set a placeholder
+                .into(studentPhotoImageView)
+        } else {
+            studentPhotoImageView.setImageResource(R.drawable.placeholder_image_black)
+        }
+
 
         nameTextView.text = student.studentName
 

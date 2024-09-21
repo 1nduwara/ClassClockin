@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout9"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.navPages.AccountFragment">
@@ -52,8 +53,9 @@
 
     <LinearLayout
         android:id="@+id/bottomAppBar"
-        android:layout_width="414dp"
-        android:layout_height="80dp"
+        android:layout_width="412dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="26dp"
         android:background="#111945"
         android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -104,10 +106,22 @@
         android:id="@+id/btn_edit_profile"
         android:layout_width="141dp"
         android:layout_height="51dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="12dp"
         android:text="Edit Profile"
         app:layout_constraintBottom_toTopOf="@+id/bottomAppBar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.177"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_uploadpicture"
+        android:layout_width="141dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="12dp"
+        android:text="Upload Profile Picture"
+        app:layout_constraintBottom_toTopOf="@+id/bottomAppBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.833"
         app:layout_constraintStart_toStartOf="parent" />
 
     <View

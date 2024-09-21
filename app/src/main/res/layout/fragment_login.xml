@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.LoginFragment">
+    tools:context=".fragments.LoginFragment"
+    android:background="#EBEBEB">
 
     <TextView
         android:id="@+id/textView"
@@ -14,7 +16,7 @@
         android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -34,25 +36,29 @@
         app:layout_constraintTop_toTopOf="@+id/textView"
         app:layout_constraintVertical_bias="0.494" />
 
+
     <EditText
         android:id="@+id/txt_username"
-        android:layout_width="288dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="376dp"
+        android:layout_width="282dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="384dp"
         android:background="@android:drawable/editbox_background_normal"
+        android:backgroundTint="#D9D9D9"
         android:ems="10"
         android:hint="@string/txt_hint_username"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="@+id/txt_pwd"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/txt_pwd"
         app:layout_constraintTop_toTopOf="@+id/textView" />
 
     <EditText
         android:id="@+id/txt_pwd"
-        android:layout_width="288dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="84dp"
+        android:layout_width="285dp"
+        android:layout_height="61dp"
+        android:layout_marginBottom="64dp"
         android:background="@android:drawable/editbox_background_normal"
+        android:backgroundTint="#D9D9D9"
         android:ems="10"
         android:hint="@string/txt_hint_pwd"
         android:inputType="textPassword"
@@ -70,22 +76,22 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.771"
+        app:layout_constraintHorizontal_bias="0.783"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_pwd"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintVertical_bias="0.058" />
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="288dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="256dp"
+        android:layout_width="280dp"
+        android:layout_height="61dp"
+        android:layout_marginBottom="240dp"
+        android:backgroundTint="#0E103D"
         android:text="LOGIN"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -104,6 +110,6 @@
         app:layout_constraintHorizontal_bias="0.532"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_login"
-        app:layout_constraintVertical_bias="0.584" />
+        app:layout_constraintVertical_bias="0.421" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

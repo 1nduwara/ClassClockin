@@ -60,6 +60,7 @@ dependencies {
     implementation(libs.junit.junit)
     implementation(libs.junit.junit)
     implementation(libs.junit.junit)
+    implementation(libs.junit.junit)
     annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
     implementation(libs.firebase.auth.ktx)
     implementation(libs.firebase.auth)

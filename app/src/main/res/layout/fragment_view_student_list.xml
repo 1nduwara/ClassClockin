@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout5"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.homeCards.viewStudentList.ViewStudentList">
@@ -78,8 +79,9 @@
 
     <LinearLayout
         android:id="@+id/bottomAppBar"
-        android:layout_width="414dp"
-        android:layout_height="80dp"
+        android:layout_width="415dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="26dp"
         android:background="#111945"
         android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
