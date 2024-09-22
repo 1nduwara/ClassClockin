@@ -200,7 +200,7 @@
         android:id="@+id/bottomAppBar"
         android:layout_width="412dp"
         android:layout_height="65dp"
-        android:layout_marginBottom="26dp"
+        android:layout_marginBottom="10dp"
         android:background="#111945"
         android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
