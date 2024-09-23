@@ -5,6 +5,7 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -94,7 +95,7 @@ class ViewStudentList : Fragment() {
         var currentLetter = ""
 
         for (student in students) {
-            val firstLetter = student.studentName?.firstOrNull()?.uppercase(Locale.getDefault()).toString()
+            val firstLetter = student.studentName.firstOrNull()?.uppercase(Locale.getDefault()).toString()
             if (firstLetter != currentLetter) {
                 currentLetter = firstLetter
                 val letterView = LayoutInflater.from(context).inflate(R.layout.letter_separator, null)
@@ -191,36 +192,65 @@ class ViewStudentList : Fragment() {
                 return@setOnClickListener
             }
 
-            // Upload photo to Firebase Storage if selected
+            // Save student info with photo URI directly
             if (selectedPhotoUri != null) {
-                val storageRef = FirebaseStorage.getInstance().reference.child("student_photos/$studentId.jpg")
-                storageRef.putFile(selectedPhotoUri!!)
-                    .addOnSuccessListener {
-                        storageRef.downloadUrl.addOnSuccessListener { uri ->
-                            saveStudentToDatabase(studentId, studentName, uri.toString())
-                            alertDialog.dismiss()
-                        }
-                    }
-                    .addOnFailureListener {
-                        Toast.makeText(context, "Failed to upload photo", Toast.LENGTH_SHORT).show()
-                    }
+                // Upload the image to Firebase Storage
+                uploadImageToFirebaseStorage(selectedPhotoUri!!, studentId) { downloadUrl ->
+                    // After image is uploaded, save the student info with the download URL
+                    saveStudentToDatabase(studentId, studentName, downloadUrl)
+                    alertDialog.dismiss()
+                }
             } else {
-                // No photo selected, just save student info without photo URL
-                saveStudentToDatabase(studentId, studentName, "")
-                alertDialog.dismiss()
+                Toast.makeText(context, "Please select a photo", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+
+
+    fun uploadAndSaveStudent(imageUri: Uri, studentId: String, studentName: String) {
+        // Upload image to Firebase Storage
+        uploadImageToFirebaseStorage(imageUri, studentId) { downloadUrl ->
+            // Once the image URL is available, save student data along with the image URL
+            saveStudentToDatabase(studentId, studentName, downloadUrl)
+        }
+    }
+
+    fun uploadImageToFirebaseStorage(imageUri: Uri, studentId: String, onSuccess: (String) -> Unit) {
+        val storageReference = FirebaseStorage.getInstance().getReference("student_photos/$studentId.jpg")
+
+        storageReference.putFile(imageUri)
+            .addOnSuccessListener { taskSnapshot ->
+                // Get the download URL after successful upload
+                storageReference.downloadUrl.addOnSuccessListener { uri ->
+                    onSuccess(uri.toString())  // Return the download URL
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.e("FirebaseStorage", "Failed to upload image", exception)
+            }
+    }
+
     private fun saveStudentToDatabase(studentId: String, studentName: String, studentPhotoUrl: String) {
+        // Create student object with all relevant information
         val student = Student(
             studentPhoto = studentPhotoUrl,
             studentId = studentId,
             studentName = studentName,
-            studentAttendance = 0.0f
+            studentAttendance = 0.0f,
         )
+
+        // Save student to Firebase Realtime Database
         database.child("students").child(studentId).setValue(student)
+            .addOnSuccessListener {
+                Log.d("FirebaseDatabase", "Student saved successfully!")
+            }
+            .addOnFailureListener { exception ->
+                Log.e("FirebaseDatabase", "Failed to save student", exception)
+            }
     }
+
+
 
     private fun selectPhotoFromGallery(callback: (Uri) -> Unit) {
         val intent = Intent(Intent.ACTION_PICK)

@@ -64,7 +64,6 @@ class MarkAttendanceFragment : Fragment() {
         return binding.root
     }
 
-    //Search bar
     private fun setupSearchView() {
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -95,7 +94,6 @@ class MarkAttendanceFragment : Fragment() {
     }
 
 
-    //Calender
     private fun setupDateInput() {
         binding.dateInput.setOnClickListener {
             val calendar = Calendar.getInstance()
@@ -120,7 +118,6 @@ class MarkAttendanceFragment : Fragment() {
         binding.dateInput.setText(selectedDate)
     }
 
-    // student load
     private fun loadStudents() {
         database.child("students").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -154,7 +151,6 @@ class MarkAttendanceFragment : Fragment() {
         setupAllPresentButton()
     }
 
-    // All present button
     private fun setupAllPresentButton() {
         binding.btnAllPresent.setOnClickListener {
             for (student in studentList) {
@@ -178,7 +174,6 @@ class MarkAttendanceFragment : Fragment() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         attendanceSpinner.adapter = adapter
 
-        // dropdown
         when (student.studentAttendance) {
             100.0f -> attendanceSpinner.setSelection(0) // Present
             0.0f -> attendanceSpinner.setSelection(1)   // Absent

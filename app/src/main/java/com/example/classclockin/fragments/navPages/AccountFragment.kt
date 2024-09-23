@@ -1,13 +1,16 @@
 package com.example.classclockin.fragments.navPages
 
 import android.annotation.SuppressLint
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -19,11 +22,23 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import java.io.File
 
 class AccountFragment : Fragment() {
 
     private lateinit var binding: FragmentAccountBinding
     private lateinit var auth: FirebaseAuth
+//    val profileImageView = binding.imageView3
+
+    private val pickImage = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        uri?.let {
+            // Set selected image to ImageView
+            binding.imageView3.setImageURI(it)
+
+            // Save image to local storage
+            saveImageLocally(it)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,6 +46,14 @@ class AccountFragment : Fragment() {
     ): View? {
         binding = FragmentAccountBinding.inflate(inflater, container, false)
         auth = FirebaseAuth.getInstance()
+
+
+        binding.btnUploadpicture.setOnClickListener {
+            // Open image picker
+            pickImage.launch("image/*")
+        }
+
+        loadImageFromStorage()
 
         binding.btnBack.setOnClickListener {
             it.findNavController().navigate(R.id.action_accountFragment_to_homeFragment)
@@ -63,6 +86,28 @@ class AccountFragment : Fragment() {
         fetchTeacherInfo()
 
         return binding.root
+    }
+
+
+    private fun saveImageLocally(uri: Uri) {
+        val inputStream = requireContext().contentResolver.openInputStream(uri)
+        val file = File(requireContext().filesDir, "profile_picture.png")
+
+        inputStream?.use { input ->
+            file.outputStream().use { output ->
+                input.copyTo(output)
+            }
+        }
+    }
+
+    private fun loadImageFromStorage() {
+        val file = File(requireContext().filesDir, "profile_picture.png")
+        if (file.exists()) {
+            binding.imageView3.setImageURI(Uri.fromFile(file))
+        } else {
+            // Set default placeholder if no image is saved
+            binding.imageView3.setImageResource(R.drawable.placeholder_image)
+        }
     }
 
     private fun showResetPasswordDialog() {
@@ -280,6 +325,8 @@ class AccountFragment : Fragment() {
 
         dialog.show()
     }
+
+
 
     private fun updateTeacherInfo(
         email: String,

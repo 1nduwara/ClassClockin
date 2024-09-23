@@ -4,9 +4,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout2"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.RegisterFragment">
+    tools:context=".fragments.RegisterFragment"
+    android:background="#EBEBEB">
 
     <!-- Top AppBar with Back Button and Title -->
     <com.google.android.material.bottomappbar.BottomAppBar
@@ -57,7 +59,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="First Name"
-            android:inputType="text" />
+            android:inputType="text"
+            android:background="#D9D9D9"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Last Name -->
@@ -75,7 +78,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Last Name"
-            android:inputType="text" />
+            android:inputType="text"
+            android:background="#D9D9D9"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Teacher ID -->
@@ -93,7 +97,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Teacher ID"
-            android:inputType="text" />
+            android:inputType="text"
+            android:background="#D9D9D9"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Phone Number -->
@@ -111,7 +116,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Phone Number"
-            android:inputType="phone" />
+            android:inputType="phone"
+            android:background="#D9D9D9"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Email Address -->
@@ -129,7 +135,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="E-mail Address"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:background="#D9D9D9"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Password -->
@@ -147,7 +154,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:background="#D9D9D9"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Confirm Password -->
@@ -165,7 +173,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Confirm Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:background="#D9D9D9"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <!-- Agree to terms and conditions -->
@@ -189,6 +198,7 @@
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@+id/chkbx_terms"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="#0E103D"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

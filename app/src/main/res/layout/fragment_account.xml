@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout9"
+    android:fitsSystemWindows="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.navPages.AccountFragment">
@@ -52,8 +53,9 @@
 
     <LinearLayout
         android:id="@+id/bottomAppBar"
-        android:layout_width="414dp"
-        android:layout_height="80dp"
+        android:layout_width="412dp"
+        android:layout_height="65dp"
+        android:layout_marginBottom="10dp"
         android:background="#111945"
         android:padding="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -94,20 +96,32 @@
         android:id="@+id/imageView3"
         android:layout_width="149dp"
         android:layout_height="150dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/placeholder_image_black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2"
-        android:src="@drawable/placeholder_image_black" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
     <Button
         android:id="@+id/btn_edit_profile"
         android:layout_width="141dp"
         android:layout_height="51dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginBottom="12dp"
         android:text="Edit Profile"
         app:layout_constraintBottom_toTopOf="@+id/bottomAppBar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.177"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btn_uploadpicture"
+        android:layout_width="141dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="12dp"
+        android:text="Upload Profile Picture"
+        app:layout_constraintBottom_toTopOf="@+id/bottomAppBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.833"
         app:layout_constraintStart_toStartOf="parent" />
 
     <View
@@ -155,11 +169,11 @@
         android:id="@+id/divider6"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginBottom="35dp"
         android:background="?android:attr/listDivider"
         app:layout_constraintBottom_toTopOf="@+id/btn_edit_profile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_reset_pwd" />
 
@@ -168,7 +182,7 @@
         android:layout_width="95dp"
         android:layout_height="50dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="24dp"
         android:layout_marginBottom="11dp"
         android:text="Reset"
         app:layout_constraintBottom_toTopOf="@+id/divider6"
@@ -180,7 +194,7 @@
         android:layout_width="65dp"
         android:layout_height="62dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="253dp"
+        android:layout_marginTop="232dp"
         android:src="@drawable/icon_id"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView2" />
@@ -220,7 +234,7 @@
         android:layout_width="60dp"
         android:layout_height="50dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:src="@drawable/icon_pwd"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider5" />
@@ -277,8 +291,8 @@
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginBottom="17dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="20dp"
         android:text="Password"
         android:textSize="20dp"
         android:textStyle="bold"
