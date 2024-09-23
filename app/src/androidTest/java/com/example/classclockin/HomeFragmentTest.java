@@ -47,3 +47,5 @@ public class HomeFragmentTest {
         onView(withId(R.id.nav_notification)).perform(click());
 }
 }
+
+//Tested
